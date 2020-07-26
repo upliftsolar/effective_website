@@ -53,6 +53,34 @@ exit
 docker-compose run web
 ```
 
+## Elastic Beanstalk & ROR
+
+Alternatively you can deploy the app using AWS Elastic Beanstalk.
+
+### Elastic Beanstalk (eb) CLI
+
+[Read](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-advanced.html) and follow instructions to install on Windows, Linux or MacOS.
+
+### Configuration and Deployments
+
+```bash
+cd effective_website
+eb init
+# It appears you are using Docker. Is this correct? => n
+# Select a platform. => 11) Ruby
+# Select a platform branch. => 1) Ruby 2.7 running on 64bit Amazon Linux 2
+# Do you wish to continue with CodeCommit? (y/N) (default is n): => n
+# Do you want to set up SSH for your instances? =>y
+
+eb create effective-website-dev -db.engine postgres -db.user postgres -db.pass password1234
+eb setenv SECRET_KEY_BASE=$(rails secret) REDIS_URL=redis://localhost:6379
+eb deploy effective-website-dev
+```
+
+Also, if not using master-key credentials, please setenv any relevant AWS variables (see S3, below)
+
+To effect code changes, commit your code then eb deploy.
+
 ## Create/Configure an S3 Bucket
 
 You will need an AWS IAM user with sufficient priviledges and a properly configured S3 bucket to use with effective_assets
