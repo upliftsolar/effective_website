@@ -5,7 +5,7 @@
     %h1= @page_title
 
   .col-4.text-right
-    = render_resource_buttons(resource.klass, (action ||= :index) => false)
+    = render_resource_buttons(resource.klass, (action ||= :index) => false, :list=>false)
 
 - if @datatable
   = render_datatable(@datatable)
