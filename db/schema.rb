@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2019_04_20_034057) do
     t.datetime "created_at"
   end
 
-  create_table "clients", force: :cascade do |t|
+  create_table "communities", force: :cascade do |t|
     t.string "name"
     t.string "phone"
     t.string "email"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2019_04_20_034057) do
   end
 
   create_table "mates", force: :cascade do |t|
-    t.integer "client_id"
+    t.integer "community_id"
     t.integer "user_id"
     t.integer "roles_mask"
     t.datetime "created_at", null: false

@@ -1,3 +1,3 @@
-class Admin::ClientsController < Admin::ApplicationController
+class Admin::CommunitiesController < Admin::ApplicationController
   include Effective::CrudController
 end

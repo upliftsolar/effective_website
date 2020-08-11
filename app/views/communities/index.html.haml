@@ -1,0 +1,12 @@
+%h1= @page_title
+
+- if @communities.length > 1
+  %p Your account belongs to multiple communities!
+
+  %p You can invite and manage users separately for each of them.
+
+  %p Please select one to continue:
+
+%ul
+  - @communities.each do |community|
+    %li= link_to community, community_path(community)

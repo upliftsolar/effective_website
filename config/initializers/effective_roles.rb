@@ -1,10 +1,10 @@
 EffectiveRoles.setup do |config|
   # So this is a bit weird because of the flat array
-  # The :admin, :staff, :client and :reserved are for USERS
+  # The :admin, :staff, :community and :reserved are for USERS
   # the owner, member, collaborator are for MATES
   # Sorry.
 
-  config.roles = [:admin, :staff, :client, :reserved, :owner, :member, :collaborator] # Only add to the end of this array.  Never prepend roles.
+  config.roles = [:admin, :staff, :community, :reserved, :owner, :member, :collaborator] # Only add to the end of this array.  Never prepend roles.
 
   # config.role_descriptions
   # ========================
@@ -14,12 +14,12 @@ EffectiveRoles.setup do |config|
     # User roles
     :admin => 'can log in to the /admin section of the website. full access to everything.',
     :staff => 'can log in to the /admin section of the website.',
-    :client => 'can log in to the /client section of the website.',
+    :community => 'can log in to the /community section of the website.',
 
     # Mate roles
-    :owner => 'can manage client settings and orders',
-    :member => 'can create, update and destroy client resources',
-    :collaborator => 'can view client resources'
+    :owner => 'can manage community settings and orders',
+    :member => 'can create, update and destroy community resources',
+    :collaborator => 'can view community resources'
   }
 
   # config.assignable_roles
@@ -30,9 +30,9 @@ EffectiveRoles.setup do |config|
 
   config.assignable_roles = {
     # User roles
-    admin: [:admin, :staff, :client, :owner, :member, :collaborator],
-    staff: [:staff, :client, :owner, :member, :collaborator],
-    client: [:member, :collaborator],
+    admin: [:admin, :staff, :community, :owner, :member, :collaborator],
+    staff: [:staff, :community, :owner, :member, :collaborator],
+    community: [:member, :collaborator],
 
     # Mate roles
     owner: [:member, :collaborator],

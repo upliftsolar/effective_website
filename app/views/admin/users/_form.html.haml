@@ -3,7 +3,7 @@
     = render '/admin/users/form_user', user: user, namespace: :admin
 
   - if user.persisted?
-    = tab 'Clients' do
+    = tab 'Communities' do
       = render 'mates/roles'
       = render_datatable(MatesDatatable.new(user_id: user.id), inline: true)
 

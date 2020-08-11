@@ -16,8 +16,8 @@ class Ability
     can :index, Effective::Page
     can(:show, Effective::Page) { |page| page.roles_permit?(user) }
 
-    if user.is?(:client)
-      client_abilities(user)
+    if user.is?(:community)
+      community_abilities(user)
     end
 
     if user.is?(:staff)
@@ -32,23 +32,23 @@ class Ability
 
   private
 
-  def client_abilities(user)
+  def community_abilities(user)
     can :manage, Effective::Cart, user_id: user.id
     can :manage, Effective::Order, user_id: user.id # Orders cannot be deleted
 
-    # My Clients
-    can [:index, :show, :edit], Client, id: user.client_ids
-    can :update, Client, id: user.client_ids(:owner)
-    can [:destroy, :transfer], Client, id: user.client_ids(:owner)
+    # My Communitys
+    can [:index, :show, :edit], Community, id: user.community_ids
+    can :update, Community, id: user.community_ids(:owner)
+    can [:destroy, :transfer], Community, id: user.community_ids(:owner)
 
     # My Mates
-    can([:new, :create], Mate) { |mate| user.client_ids(:owner, :member).include?(mate.client_id) }
-    can(:index, Mate) { |mate| user.client_ids(:owner, :member).include?(mate.client_id) }
-    can(:show, Mate) { |mate| user.client_ids(:owner, :member).include?(mate.client_id) || mate.user_id == user.id }
-    can(:destroy, Mate) { |mate| user.client_ids(:owner).include?(mate.client_id) || (!mate.is?(:owner) && mate.user_id == user.id) }
-    can(:promote, Mate) { |mate| user.client_ids(:owner).include?(mate.client_id) && !mate.is?(:owner) && mate.user_id != user.id }
-    can(:demote, Mate) { |mate| user.client_ids(:owner).include?(mate.client_id) && !mate.is?(:collaborator) && mate.user_id != user.id }
-    can(:reinvite, Mate) { |mate| user.client_ids(:owner, :member).include?(mate.client_id) && !mate.invitation_accepted? }
+    can([:new, :create], Mate) { |mate| user.community_ids(:owner, :member).include?(mate.community_id) }
+    can(:index, Mate) { |mate| user.community_ids(:owner, :member).include?(mate.community_id) }
+    can(:show, Mate) { |mate| user.community_ids(:owner, :member).include?(mate.community_id) || mate.user_id == user.id }
+    can(:destroy, Mate) { |mate| user.community_ids(:owner).include?(mate.community_id) || (!mate.is?(:owner) && mate.user_id == user.id) }
+    can(:promote, Mate) { |mate| user.community_ids(:owner).include?(mate.community_id) && !mate.is?(:owner) && mate.user_id != user.id }
+    can(:demote, Mate) { |mate| user.community_ids(:owner).include?(mate.community_id) && !mate.is?(:collaborator) && mate.user_id != user.id }
+    can(:reinvite, Mate) { |mate| user.community_ids(:owner, :member).include?(mate.community_id) && !mate.invitation_accepted? }
   end
 
   def staff_abilities(user)
@@ -70,10 +70,10 @@ class Ability
     can :admin, :effective_posts
     can :admin, :effective_roles
 
-    # Clients
-    can(crud, Client)
-    acts_as_archived(Client)
-    can(:transfer, Client) { |client| user.client_ids(:owner).include?(client.id) }
+    # Communitys
+    can(crud, Community)
+    acts_as_archived(Community)
+    can(:transfer, Community) { |community| user.community_ids(:owner).include?(community.id) }
 
     # Mates
     can(crud, Mate)
@@ -84,13 +84,13 @@ class Ability
     # Users
     can(crud, User)
     acts_as_archived(User)
-    can(:impersonate, User) { |user| user.is?(:client) }
+    can(:impersonate, User) { |user| user.is?(:community) }
     can(:invite, User) { |user| user.new_record? }
     can(:reinvite, User) { |user| !user.invitation_accepted? || user.invitation_sent_at.blank? }
   end
 
   def admin_abilities(user)
-    can(:impersonate, User) { |user| user.is?(:client) || user.is?(:staff) }
+    can(:impersonate, User) { |user| user.is?(:community) || user.is?(:staff) }
   end
 
 end

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   match '/settings', to: 'users/settings#edit', via: [:get], as: :user_settings
   match '/settings', to: 'users/settings#update', via: [:patch, :put]
 
-  resources :clients, except: [:new, :create]
+  resources :communities, except: [:new, :create]
 
   resources :mates, only: [:new, :create, :destroy] do
     post :reinvite, on: :member
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :clients, except: [:show], concerns: :acts_as_archived
+    resources :communities, except: [:show], concerns: :acts_as_archived
 
     resources :mates, only: [:new, :create, :destroy] do
       post :reinvite, on: :member

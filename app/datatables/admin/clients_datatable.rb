@@ -1,4 +1,4 @@
-class Admin::ClientsDatatable < Effective::Datatable
+class Admin::CommunitiesDatatable < Effective::Datatable
 
   filters do
     scope :unarchived, label: 'All'
@@ -16,9 +16,9 @@ class Admin::ClientsDatatable < Effective::Datatable
     col :phone
     col :email
 
-    col :users do |client|
-      client.users.map do |user|
-        mate = client.mates.find { |mate| mate.user_id == user.id }
+    col :users do |community|
+      community.users.map do |user|
+        mate = community.mates.find { |mate| mate.user_id == user.id }
 
         title = (can?(:edit, user) ? link_to(user, edit_admin_user_path(user), title: user.to_s) : user.to_s)
         badge = content_tag(:span, mate.roles.join, class: 'badge badge-info')
@@ -33,7 +33,7 @@ class Admin::ClientsDatatable < Effective::Datatable
   end
 
   collection do
-    Client.deep.all
+    Community.deep.all
   end
 
 end

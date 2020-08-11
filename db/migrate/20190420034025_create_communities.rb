@@ -1,6 +1,6 @@
-class CreateClients < ActiveRecord::Migration[5.2]
+class CreateCommunities < ActiveRecord::Migration[5.2]
   def change
-    create_table :clients do |t|
+    create_table :communities do |t|
       t.string :name
       t.string :phone
       t.string :email

@@ -1,21 +1,21 @@
-# My Clients
-class ClientsController < ApplicationController
+# My Communities
+class CommunitiesController < ApplicationController
   before_action :authenticate_user!
 
   include Effective::CrudController
 
-  resource_scope -> { Client.deep.for_user(current_user) }
+  resource_scope -> { Community.deep.for_user(current_user) }
 
   before_action(only: :index) do
-    clients_length = resource_scope.to_a.length
+    communities_length = resource_scope.to_a.length
 
-    if clients_length == 0
-      flash[:danger] = 'Your website account does not belong to any client groups. Please contact the webmaster for assistance.'
+    if communities_length == 0
+      flash[:danger] = 'Your website account does not belong to any community groups. Please contact the webmaster for assistance.'
       redirect_to root_path
     end
 
-    if clients_length == 1
-      redirect_to client_path(resource_scope.first)
+    if communities_length == 1
+      redirect_to community_path(resource_scope.first)
     end
   end
 

@@ -1,9 +1,9 @@
-= effective_form_with(model: [:admin, client]) do |f|
+= effective_form_with(model: [:admin, community]) do |f|
   .row
     .col-sm-6.border-right
       %h3 Contact Info
       %p
-        %small.text-muted The client can see and update these fields
+        %small.text-muted The community can see and update these fields
 
       = f.text_field :name
       = f.phone_field :phone

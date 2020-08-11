@@ -1,0 +1,11 @@
+= tabs do
+  = tab 'Demographics' do
+    = render '/admin/communities/form_community', community: community
+
+  - if community.persisted?
+    = tab 'Users' do
+      = render 'mates/roles'
+      = render_datatable(MatesDatatable.new(community_id: community.id, namespace: :admin), inline: true)
+
+    = tab 'Logs' do
+      = render_datatable(community.log_changes_datatable)

@@ -1,7 +1,7 @@
-%p You belong to the following client groups: #{'none' if user.mates.length == 0}
+%p You belong to the following community groups: #{'none' if user.mates.length == 0}
 
 %ul
   - user.mates.each do |mate|
-    %li #{link_to(mate.client, '#')} as a <strong>#{mate.roles.first}</strong>.
+    %li #{link_to(mate.community, '#')} as a <strong>#{mate.roles.first}</strong>.
 
 = render 'mates/roles'

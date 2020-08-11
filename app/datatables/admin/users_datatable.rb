@@ -4,7 +4,7 @@ class Admin::UsersDatatable < Effective::Datatable
     scope :unarchived, label: 'All'
     scope :admins
     scope :staff
-    scope :clients
+    scope :communities
     scope :archived
   end
 
@@ -20,11 +20,11 @@ class Admin::UsersDatatable < Effective::Datatable
     col :last_name
     col :roles, search: User::ROLES
 
-    col :clients do |user|
-      user.clients.map do |client|
-        mate = user.mates.find { |mate| mate.client_id == client.id }
+    col :communities do |user|
+      user.communities.map do |community|
+        mate = user.mates.find { |mate| mate.community_id == community.id }
 
-        title = (can?(:edit, client) ? link_to(client, edit_admin_client_path(client), title: client.to_s) : client.to_s)
+        title = (can?(:edit, community) ? link_to(community, edit_admin_community_path(community), title: community.to_s) : community.to_s)
         badge = content_tag(:span, mate.roles.join, class: 'badge badge-info')
 
         content_tag(:div, (title + ' ' + badge), class: 'col-resource-item')

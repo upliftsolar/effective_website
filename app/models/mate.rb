@@ -1,10 +1,10 @@
 class Mate < ApplicationRecord
   acts_as_role_restricted  # effective_roles
-  log_changes to: :client  # log_changes
+  log_changes to: :community  # log_changes
 
   attribute :email
 
-  belongs_to :client, counter_cache: true, autosave: true
+  belongs_to :community, counter_cache: true, autosave: true
   belongs_to :user
 
   # This must be a subset of effective_roles roles.
@@ -19,14 +19,14 @@ class Mate < ApplicationRecord
     timestamps
   end
 
-  scope :deep, -> { includes(:client, :user) }
+  scope :deep, -> { includes(:community, :user) }
 
   before_validation(if: -> { roles.blank? }) { self.roles = [:member] }
 
-  validates :client, presence: true
+  validates :community, presence: true
   validates :roles, presence: true
 
-  validates :user_id, if: -> { user_id && client_id }, uniqueness: { scope: [:client_id], message: 'already belongs to this client' }
+  validates :user_id, if: -> { user_id && community_id }, uniqueness: { scope: [:community_id], message: 'already belongs to this community' }
 
   validate do
     if user_id.blank? && user.blank? && email.blank?
@@ -44,11 +44,11 @@ class Mate < ApplicationRecord
   end
 
   after_commit(on: :create) do
-    @invited_user ? user.invite! : ApplicationMailer.user_invited_to_client(user.id, client.id).deliver
+    @invited_user ? user.invite! : ApplicationMailer.user_invited_to_community(user.id, community.id).deliver
   end
 
   def to_s
-    [user.to_s.presence, client.to_s.presence].compact.join(' - ').presence || 'New Mate'
+    [user.to_s.presence, community.to_s.presence].compact.join(' - ').presence || 'New Mate'
   end
 
   def invitation_accepted?

@@ -9,8 +9,8 @@
       - if can? :index, User
         = nav_link_to 'Users', admin_users_path
 
-      - if can? :index, Client
-        = nav_link_to 'Clients', admin_clients_path
+      - if can? :index, Community
+        = nav_link_to 'Communities', admin_communities_path
 
       - if can? :admin, :effective_orders
         = nav_link_to 'Orders', effective_orders.admin_orders_path

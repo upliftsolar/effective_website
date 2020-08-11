@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'barrioelectrico@gmail.com'
 
   layout 'mailer'
 
@@ -11,13 +11,13 @@ class ApplicationMailer < ActionMailer::Base
     raise 'this is an intention exception. An Active Job has raised this exception.'
   end
 
-  def user_invited_to_client(user_id, client_id)
+  def user_invited_to_community(user_id, community_id)
     @user = User.find_by_id(user_id)
-    @client = Client.find_by_id(client_id)
+    @community = Community.find_by_id(community_id)
 
-    return false unless @user && @client && @user.email
+    return false unless @user && @ommunity && @user.email
 
-    mail(to: @user.email, subject: "Added to #{@client}")
+    mail(to: @user.email, subject: "Added to #{@community}")
   end
 
 end

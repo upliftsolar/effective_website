@@ -2,8 +2,8 @@ class MatesDatatable < Effective::Datatable
 
   datatable do
 
-    unless attributes[:client_id]
-      col :client, label: 'Client Name', search: :string
+    unless attributes[:community_id]
+      col :community, label: 'Community Name', search: :string
     end
 
     unless attributes[:user_id]
@@ -30,10 +30,10 @@ class MatesDatatable < Effective::Datatable
   end
 
   collection do
-    scope = Mate.joins(:user).includes(:user, :client).all
+    scope = Mate.joins(:user).includes(:user, :community).all
 
-    if attributes[:client_id]
-      scope = scope.where(client_id: attributes[:client_id])
+    if attributes[:community_id]
+      scope = scope.where(community_id: attributes[:community_id])
     end
 
     if attributes[:user_id]

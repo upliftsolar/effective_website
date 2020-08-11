@@ -13,8 +13,8 @@
         - Effective::Page.all.each do |page|
           = nav_link_to(page, effective_pages.page_path(page)) if can?(:show, page)
 
-      - if can?(:index, Client) && current_user.clients.present?
-        = nav_link_to 'Manage Users', clients_path
+      - if can?(:index, Community) && current_user.communities.present?
+        = nav_link_to 'Manage Users', communities_path
 
       - if can?(:index, Effective::StyleGuide)
         = nav_link_to 'Style Guide', effective_style_guide.style_guide_path

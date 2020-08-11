@@ -7,19 +7,19 @@ class User < ApplicationRecord
   log_changes                              # effective_logging
 
   # This must be a subset of effective_roles roles.
-  ROLES = [:admin, :staff, :client]
+  ROLES = [:admin, :staff, :community]
 
   has_one_attached :avatar  # active_storage
   has_many_attached :files
 
-  # My clients
+  # My communities
   has_many :mates, -> { order(:id) }, dependent: :destroy, inverse_of: :user
-  has_many :clients, -> { Client.sorted }, through: :mates
+  has_many :communities, -> { Community.sorted }, through: :mates
   accepts_nested_attributes_for :mates
 
-  # If we want to implement client mate roles:
+  # If we want to implement community mate roles:
   # has_many :member_mates, -> { with_role(:member) }, class_name: 'Mate', inverse_of: :user
-  # has_many :member_clients, through: :member_mates, class_name: 'Client', source: :client
+  # has_many :member_communities, through: :member_mates, class_name: 'Community', source: :community
 
   def self.permitted_sign_up_params # Should contain all fields as per views/users/_sign_up_fields
     [:email, :password, :password_confirmation, :first_name, :last_name]
@@ -59,7 +59,7 @@ class User < ApplicationRecord
     timestamps
   end
 
-  scope :deep, -> { with_attached_files.includes(:clients) }
+  scope :deep, -> { with_attached_files.includes(:communities) }
   scope :shallow, -> { select(:id, :email, :first_name, :last_name) }
 
   scope :sorted, -> { order(:first_name) }
@@ -67,9 +67,9 @@ class User < ApplicationRecord
 
   scope :admins, -> { unarchived.with_role(:admin) }
   scope :staff, -> { unarchived.with_role(:staff) }
-  scope :clients, -> { unarchived.with_role(:client) }
+  scope :communities, -> { unarchived.with_role(:community) }
 
-  before_validation(if: -> { roles.blank? }) { self.roles = [:client] }
+  before_validation(if: -> { roles.blank? }) { self.roles = [:community] }
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -120,12 +120,12 @@ class User < ApplicationRecord
     devise_mailer.send(notification, self, *args).deliver_later # Send devise & devise_invitable emails via active job
   end
 
-  # user.client_ids
-  # user.client_ids(:owner)
-  # user.client_ids(:member)
-  def client_ids(*role_names)
-    @client_ids ||= mates.to_a.group_by { |mate| mate.roles.first }.transform_values { |mates| mates.map(&:client_id) }
-    role_names.present? ? (Array(role_names).flat_map { |role| @client_ids[role] }.compact) : @client_ids.values.flatten
+  # user.community_ids
+  # user.community_ids(:owner)
+  # user.community_ids(:member)
+  def community_ids(*role_names)
+    @community_ids ||= mates.to_a.group_by { |mate| mate.roles.first }.transform_values { |mates| mates.map(&:community_id) }
+    role_names.present? ? (Array(role_names).flat_map { |role| @community_ids[role] }.compact) : @community_ids.values.flatten
   end
 
 end

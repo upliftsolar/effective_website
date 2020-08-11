@@ -24,7 +24,7 @@ if Rails.env.test?
     # test is a String as per the except, only and TEST= test names
     # proc = { |test| user = User.first; puts "#{test} #{user}"; user }
     config.user = proc { |test|
-      test.start_with?('admin') ? User.first : Client.last.mates.with_role(:owner).first.user
+      test.start_with?('admin') ? User.first : Community.last.mates.with_role(:owner).first.user
     }
 
     # Exits immediately if there is a test failure

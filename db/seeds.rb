@@ -9,24 +9,24 @@ admin = User.create!(email: 'admin@codeandeffect.com', first_name: 'Admin', last
 # Can access /admin and administer the site.
 staff = User.create!(email: 'staff@codeandeffect.com', first_name: 'Staff', last_name: 'User', roles: :staff, password: 'example')
 
-puts '== Creating clients ===================='
-# Can access /clients and belong to client groups.
+puts '== Creating communities ===================='
+# Can access /communities and belong to community groups.
 3.times do
-  client = Client.new(name: Faker::Company.name)
+  community = Community.new(name: Faker::Company.name)
 
   [:owner, :member, :collaborator].each do |role|
     user = User.create!(
-      email: "#{role}@#{client.name.parameterize}.com",
+      email: "#{role}@#{community.name.parameterize}.com",
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
-      roles: :client,
+      roles: :community,
       password: 'be_effective'
     )
 
-    client.mates.build(user: user, roles: role)
+    community.mates.build(user: user, roles: role)
   end
 
-  client.save!
+  community.save!
 end
 
 puts '== Creating pages ======================'
@@ -51,7 +51,7 @@ Effective::Page.new(
   meta_description: 'A example members-only page',
   layout: 'application',
   template: 'page',
-  roles: [:client]  # Only clients can see this page.
+  roles: [:community]  # Only communities can see this page.
 ).save!
 
 puts '== Creating posts ====================='
