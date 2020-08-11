@@ -4,7 +4,7 @@
 puts '== Creating users ======================'
 
 # The webmaster and/or super priviledged staff member. Can do anything.
-admin = User.create!(email: 'admin@codeandeffect.com', first_name: 'Admin', last_name: 'User', roles: :admin, password: 'example')
+admin = User.create!(email: 'darius.roberts@gmail.com', first_name: 'Darius', last_name: 'Roberts', roles: :admin, password: 'example')
 
 # Can access /admin and administer the site.
 staff = User.create!(email: 'staff@codeandeffect.com', first_name: 'Staff', last_name: 'User', roles: :staff, password: 'example')
@@ -47,8 +47,8 @@ Effective::Page.new(
 ).save!
 
 Effective::Page.new(
-  title: 'Members Only',
-  meta_description: 'A example members-only page',
+  title: 'Communities',
+  meta_description: 'A example community-only page',
   layout: 'application',
   template: 'page',
   roles: [:community]  # Only communities can see this page.
