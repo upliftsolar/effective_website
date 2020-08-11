@@ -6,6 +6,8 @@
 
   #navContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
+      = nav_link_to 'Around PR', '/communities/list'
+        
       - if can?(:index, Effective::Post)
         = nav_link_to 'Blog', effective_posts.posts_path
         
@@ -13,7 +15,7 @@
         - Effective::Page.all.each do |page|
           = nav_link_to(page, effective_pages.page_path(page)) if can?(:show, page)
 
-      - if can?(:index, Community) && current_user.communities.present?
+      - if current_user&.communities.present?
         = nav_link_to 'Manage Users', communities_path
 
     %ul.navbar-nav

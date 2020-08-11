@@ -13,7 +13,7 @@ class Ability
     can [:index, :show], Effective::Post
     can [:index, :show], Effective::StyleGuide
 
-    can [:index, :show], Community
+    can [:index, :show, :list], Community
     can :index, Effective::Page
     can(:show, Effective::Page) { |page| page.roles_permit?(user) }
 

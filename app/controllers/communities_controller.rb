@@ -1,10 +1,11 @@
 # My Communities
 class CommunitiesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:list]
 
   include Effective::CrudController
-
-  resource_scope -> { Community.deep.for_user(current_user) }
+  skip_authorization_check only: [:list]
+  
+  resource_scope -> { Community.deep }
 
   before_action(only: :index) do
     communities_length = resource_scope.to_a.length
@@ -17,6 +18,11 @@ class CommunitiesController < ApplicationController
     if communities_length == 1
       redirect_to community_path(resource_scope.first)
     end
+  end
+
+  def list
+    @datatable = CommunitiesDatatable.new
+    #render :index
   end
 
 end

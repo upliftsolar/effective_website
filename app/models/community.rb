@@ -6,6 +6,7 @@ class Community < ApplicationRecord
   has_many :mates, -> { order(:roles_mask) }, dependent: :destroy, inverse_of: :community, counter_cache: :mates_count
   has_many :users, through: :mates
   accepts_nested_attributes_for :mates
+  has_one_attached :flyer
 
   effective_resource do
     name            :string
