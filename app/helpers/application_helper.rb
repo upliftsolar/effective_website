@@ -14,7 +14,7 @@ module ApplicationHelper
     #TODO:
     #update user preferences
 
-    if params.values.include?("static_pages") && params.values.include?("home")
+    if !current_user
       if @locale == 'es'
         nav_link_to 'English', url_for(locale: 'en')
       else
@@ -23,9 +23,11 @@ module ApplicationHelper
     else # not /root
       fullpath = request.fullpath.dup.tap{|p| p.slice!(/^\/(en|es)/)}
       if @locale == 'es'
-        nav_link_to 'English', File.join('/en',fullpath) #user_path(current_user, locale: 'en'), method: :put
+        choice = 'en'
+        nav_link_to 'English', File.join(user_registration_path(locale: choice, confirm_locale: choice)), method: :patch
       else
-        nav_link_to 'Español', File.join('/es',fullpath) #user_path(current_user, locale: 'sp'), method: :put
+        choice = 'es'
+        nav_link_to 'Español', File.join(user_registration_path(locale: choice, confirm_locale: choice)), method: :patch
       end
     end
   end

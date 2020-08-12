@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   mount Tolk::Engine => '/tolk', :as => 'tolk'
-  #scope "(:locale)", locale: /(en|sp)/, defaults: {locale: "sp"}  do
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
 
     
   acts_as_archived
 
-  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions', confirmations: 'users/confirmations', invitations: 'users/invitations' }
+  devise_for :users, controllers: { 
+    registrations: 'users/registrations', 
+    sessions: 'users/sessions', 
+    confirmations: 'users/confirmations', 
+    invitations: 'users/invitations' 
+  }
   match '/impersonate', to: 'users/impersonations#destroy', via: [:delete], as: :impersonate
 
   if Rails.env.production?

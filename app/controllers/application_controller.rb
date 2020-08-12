@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
 
   around_action :switch_locale
   def switch_locale(&action)
+    #TODO: remove current_user locale. Maybe.
     @locale = params[:locale] || current_user.try(:locale) || I18n.default_locale
     I18n.with_locale(@locale, &action)
   end
@@ -45,6 +46,12 @@ class ApplicationController < ActionController::Base
     assign_test_bot_access_denied_exception(exception) if defined?(EffectiveTestBot) && Rails.env.test?
   end
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  protected
+  def configure_permitted_parameters
+    @confirm_locale = params[:confirm_locale]
+  end
+
   private
 
   def restrict_admin_routes
@@ -54,8 +61,8 @@ class ApplicationController < ActionController::Base
   def set_devise_page_title
     @page_title =
       case "#{params[:controller]}_#{params[:action]}".sub('devise/', '').sub('users/', '')
-      when 'sessions_new' then 'Sign In'
-      when 'sessions_create' then 'Sign In'
+      when 'sessions_new' then t('Sign In')
+      when 'sessions_create' then t('Sign In')
       when 'passwords_new' then 'Forgot Your Password?'
       when 'passwords_create' then 'Forgot Your Password?'
       when 'passwords_edit' then 'Change Your Password'
