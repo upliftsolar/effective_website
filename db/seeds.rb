@@ -54,6 +54,20 @@ Effective::Page.new(
   roles: [:community]  # Only communities can see this page.
 ).save!
 
+=begin
+rails g effective:scaffold ServiceProvider name:string address:string locality:string email:string phone:string phone:string title:string verifications:text flagged_text:text
+
+1. Name
+2. Address
+3. Region worked (city or county)
+4. email
+5. telephone number
+6. Professional Title ("electrical engineer" or "perito electricista" ) and yes, the pages need to be bi-lingual
+7. Certification or Member in Good Standing of the following:
+
+
+=end
+
 puts '== Creating posts ====================='
 
 # Some Posts

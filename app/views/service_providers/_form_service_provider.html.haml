@@ -1,0 +1,12 @@
+= effective_form_with(model: [(namespace if defined?(namespace)), service_provider]) do |f|
+  - if service_provider.flagged_text
+    %p
+      = service_provider.flagged_text
+  = f.text_field :name
+  = f.text_field :address
+  = f.text_field :locality
+  = f.email_field :email
+  = f.text_field :phone
+  = f.text_field :title
+  = f.text_area :verifications
+  = effective_submit(f)

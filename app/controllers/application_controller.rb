@@ -12,6 +12,16 @@ class ApplicationController < ActionController::Base
   skip_authorization_check if: :devise_controller?
   before_action :restrict_admin_routes, if: -> { request.path.start_with?('/admin'.freeze) }
 
+
+  around_action :switch_locale
+  def switch_locale(&action)
+    @locale = params[:locale] || current_user.try(:locale) || I18n.default_locale
+    I18n.with_locale(@locale, &action)
+  end
+  def default_url_options(options={})
+    { :locale => I18n.locale == I18n.default_locale ? nil : I18n.locale  }
+  end
+
   # Logging, and trash
   # log_page_views
   before_action :set_effective_logging_current_user
@@ -73,5 +83,6 @@ class ApplicationController < ActionController::Base
       end
     )
   end
+
 
 end

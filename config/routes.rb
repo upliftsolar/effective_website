@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  #scope "(:locale)", locale: /(en|sp)/, defaults: {locale: "sp"}  do
+  scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
+
+    
   acts_as_archived
 
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions', confirmations: 'users/confirmations', invitations: 'users/invitations' }
@@ -29,6 +33,8 @@ Rails.application.routes.draw do
     post :demote, on: :member
   end
 
+  resources :service_providers
+
   namespace :admin do
     resources :communities, except: [:show], concerns: :acts_as_archived
 
@@ -45,9 +51,12 @@ Rails.application.routes.draw do
 
     root to: 'users#index'
   end
+  end #end locale
 
   # if you want EffectivePages to render the home / root page
   # uncomment the following line and create an Effective::Page with slug == 'home'
   # root :to => 'Effective::Pages#show', :id => 'home'
   root to: 'static_pages#home'
+  match '/sp', to: 'static_pages#home', locale: 'sp', via: [:get]
+  match '/en', to: 'static_pages#home', locale: 'en', via: [:get]
 end

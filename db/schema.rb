@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_034057) do
+ActiveRecord::Schema.define(version: 2020_08_11_221230) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -242,6 +242,19 @@ ActiveRecord::Schema.define(version: 2019_04_20_034057) do
     t.index ["regionable_type", "regionable_id"], name: "index_regions_on_regionable_type_and_regionable_id"
   end
 
+  create_table "service_providers", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "locality"
+    t.string "email"
+    t.string "phone"
+    t.string "title"
+    t.text "verifications"
+    t.text "flagged_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "subscribable_id"
@@ -289,6 +302,7 @@ ActiveRecord::Schema.define(version: 2019_04_20_034057) do
     t.string "invited_by_type"
     t.integer "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.string "locale", default: "sp"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

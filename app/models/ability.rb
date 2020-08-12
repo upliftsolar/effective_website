@@ -2,6 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :manage, ServiceProvider
     cannot :access, :admin
 
     user ||= User.new

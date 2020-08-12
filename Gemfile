@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.7.1'
 
 gem 'rails'
+gem 'rails-i18n'
 gem 'bootsnap'
 gem 'pg'
 
