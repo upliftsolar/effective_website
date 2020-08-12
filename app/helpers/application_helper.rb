@@ -15,17 +15,17 @@ module ApplicationHelper
     #update user preferences
 
     if params.values.include?("static_pages") && params.values.include?("home")
-      if @locale == 'sp'
+      if @locale == 'es'
         nav_link_to 'English', url_for(locale: 'en')
       else
-        nav_link_to 'Español', url_for(locale: 'sp')
+        nav_link_to 'Español', url_for(locale: 'es')
       end
     else # not /root
-      fullpath = request.fullpath.dup.tap{|p| p.slice!(/^\/(en|sp)/)}
-      if @locale == 'sp'
+      fullpath = request.fullpath.dup.tap{|p| p.slice!(/^\/(en|es)/)}
+      if @locale == 'es'
         nav_link_to 'English', File.join('/en',fullpath) #user_path(current_user, locale: 'en'), method: :put
       else
-        nav_link_to 'Español', File.join('/sp',fullpath) #user_path(current_user, locale: 'sp'), method: :put
+        nav_link_to 'Español', File.join('/es',fullpath) #user_path(current_user, locale: 'sp'), method: :put
       end
     end
   end

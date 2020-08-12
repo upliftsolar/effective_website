@@ -57,6 +57,6 @@ Rails.application.routes.draw do
   # uncomment the following line and create an Effective::Page with slug == 'home'
   # root :to => 'Effective::Pages#show', :id => 'home'
   root to: 'static_pages#home'
-  match '/sp', to: 'static_pages#home', locale: 'sp', via: [:get]
+  match '/es', to: 'static_pages#home', locale: 'es', via: [:get]
   match '/en', to: 'static_pages#home', locale: 'en', via: [:get]
 end
