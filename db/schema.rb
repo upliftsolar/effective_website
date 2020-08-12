@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_050215) do
+ActiveRecord::Schema.define(version: 2020_08_12_051716) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -271,6 +271,30 @@ ActiveRecord::Schema.define(version: 2020_08_12_050215) do
     t.index ["customer_id"], name: "index_subscriptions_on_customer_id"
     t.index ["subscribable_id"], name: "index_subscriptions_on_subscribable_id"
     t.index ["subscribable_type", "subscribable_id"], name: "index_subscriptions_on_subscribable_type_and_subscribable_id"
+  end
+
+  create_table "tolk_locales", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["name"], name: "index_tolk_locales_on_name", unique: true
+  end
+
+  create_table "tolk_phrases", force: :cascade do |t|
+    t.text "key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tolk_translations", force: :cascade do |t|
+    t.integer "phrase_id"
+    t.integer "locale_id"
+    t.text "text"
+    t.text "previous_text"
+    t.boolean "primary_updated", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["phrase_id", "locale_id"], name: "index_tolk_translations_on_phrase_id_and_locale_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

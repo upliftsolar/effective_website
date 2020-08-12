@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Tolk::Engine => '/tolk', :as => 'tolk'
   #scope "(:locale)", locale: /(en|sp)/, defaults: {locale: "sp"}  do
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
 

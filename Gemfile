@@ -57,6 +57,10 @@ group :production, :staging do
   gem 'uglifier'
 end
 
+gem 'tolk', github: "qoqa/tolk"
+gem 'kaminari'
+
+
 group :production do
   gem 'sidekiq'
 end

@@ -21,3 +21,8 @@
 
 sp:
   hello: "Hola Mundo"
+  activerecord:
+    attributes:
+      user/role:
+        admin: "Admin"
+        contributor: "Contributor"
