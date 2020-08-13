@@ -13,6 +13,11 @@
     = effective_posts_header_tags
     = effective_pages_header_tags
     = effective_regions_include_tags
+    - if ENV['FAVICON_ADMIN'] && request.path[/api|admin/]
+      -# crazy condition is an artifact of a specific usecase, where QA needs to keep a bunch of windows open
+      = favicon_link_tag asset_path(ENV['FAVICON_ADMIN'])
+    - elsif ENV['FAVICON']
+      = favicon_link_tag asset_path(ENV['FAVICON'])
 
   %body{class: effective_pages_body_classes}
     = render partial: 'layouts/impersonate'
