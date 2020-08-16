@@ -3,7 +3,6 @@ ruby '2.7.1'
 
 gem 'rails'
 gem 'rails-i18n'
-gem 'webpacker'
 gem 'bootsnap'
 gem 'pg'
 
@@ -65,5 +64,3 @@ gem 'kaminari'
 group :production do
   gem 'sidekiq'
 end
-
-gem "stimulus_reflex", "~> 3.2"
