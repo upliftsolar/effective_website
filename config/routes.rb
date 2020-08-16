@@ -1,6 +1,49 @@
+class EffectivePagesConstraint
+  def self.matches?(request)
+    binding.pry
+    Effective::Page.find(request.path_parameters[:id] || '/').present? rescue false
+  end
+end
 Rails.application.routes.draw do
   mount Tolk::Engine => '/tolk', :as => 'tolk'
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
+
+  #without this, i18n doesn't work well for Pages
+  #effective pages
+  scope :module => 'effective' do
+    get '*id', to: 'pages#show', constraints: ::EffectivePagesConstraint, as: :page
+  end
+  #effective posts
+  scope :module => 'effective' do
+    categories = Array(EffectivePosts.categories).map { |cat| cat.to_s unless cat == 'posts'}.compact
+    onlies = ([:index, :show] unless EffectivePosts.submissions_enabled)
+
+    if EffectivePosts.use_blog_routes
+      categories.each do |category|
+        match "blog/category/#{category}", to: 'posts#index', via: :get, defaults: { category: category }
+      end
+
+      resources :posts, only: onlies, path: 'blog'
+    elsif EffectivePosts.use_category_routes
+      categories.each do |category|
+        match category, to: 'posts#index', via: :get, defaults: { category: category }
+        match "#{category}/:id", to: 'posts#show', via: :get, defaults: { category: category }
+      end
+
+      resources :posts, only: onlies
+    else
+      resources :posts, only: onlies
+    end
+  end
+
+
+  
+
+
+
+
+
+
 
     
   acts_as_archived

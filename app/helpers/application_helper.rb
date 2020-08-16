@@ -33,7 +33,7 @@ module ApplicationHelper
   end
   def is_language?(str_or_sym)
     raise "@locale not set yet in request middleware. DEV ERROR" if @locale.nil?
-    str_or_sym && str_or_sym.to_sym == @locale
+    str_or_sym && str_or_sym.to_sym == @locale.to_sym
   end
 
 

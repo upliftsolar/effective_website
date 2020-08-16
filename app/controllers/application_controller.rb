@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   check_authorization
   skip_authorization_check if: :devise_controller?
   before_action :restrict_admin_routes, if: -> { request.path.start_with?('/admin'.freeze) }
-
+  include OverrideEffectiveRegionsForTranslationsHelper #not sure if this is late enough.
 
   def switch_locale(&action)
     #TODO: remove current_user locale. Maybe.
