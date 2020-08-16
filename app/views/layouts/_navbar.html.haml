@@ -6,7 +6,8 @@
 
   #navContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
-      = nav_link_to((ENV['WEBSITE_COMMUNITIES_DIRECTORY_HUMAN_NAME']||'Around PR'), list_communities_path)
+      - if ENV['WEBSITE_COMMUNITIES_DIRECTORY_HUMAN_NAME'].present?
+        = nav_link_to((ENV['WEBSITE_COMMUNITIES_DIRECTORY_HUMAN_NAME']||'Around PR'), list_communities_path)
         
       - if can?(:index, Effective::Post)
         = nav_link_to 'Blog', effective_posts.posts_path

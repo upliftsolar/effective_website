@@ -9,9 +9,9 @@ if Rails.env.production?
 
     # Email notifier sends notifications by email.
     config.add_notifier :email, {
-      :email_prefix         => '[EW] ',
-      :sender_address       => %{"EW" <website@example.com>},
-      :exception_recipients => %w{errors@agilestyle.com}
+      :email_prefix         => "[#{ENV['WEBSITE_ABBREVIATION'] || "EW"}] ",
+      :sender_address       => %{"Postmaster" <website@example.com>},
+      :exception_recipients => (ENV["WEBSITE_POSTMASTER_ERROR_EMAIL"] || %w{darius.roberts@gmail.com})
     }
 
   end
