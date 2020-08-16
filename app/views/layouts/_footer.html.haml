@@ -18,15 +18,17 @@
       = effective_region :footer_right do
         %h4 Contact
         %p
-          Barrio Electrico
+          #{ENV['WEBSITE_HUMAN_NAME'] || 'Example Website'}
           %br
           San Juan, Puerto Rico
           %br
-          = mail_to 'info@barrioelectrico.com'
+          = mail_to(ENV['WEBSITE_POSTMASTER_EMAIL'] || 'info@codeandeffect.com')
 
   .row
     .col.text-center
       = effective_region :footer_bottom do
-        %p Terms of Use, Privicy Policy, etc.
+        %p 
+          - for page in Effective::Page.where('layout'=>'legalese').all
+            = link_to t(page.slug.to_sym), page
 
-      %p Copyright &copy; #{Time.zone.now.year} Barrio Electrico
+      %p Copyright &copy; #{Time.zone.now.year} #{ENV['WEBSITE_HUMAN_NAME'] || 'Example Website'}

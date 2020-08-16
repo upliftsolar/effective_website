@@ -1,7 +1,7 @@
 %p Hello #{@user},
 
-%p You now have access to #{@community} at #{link_to 'Barrio Electrico', root_url}.
+%p You now have access to #{@community} at #{link_to "#{ENV['WEBSITE_HUMAN_NAME'] || 'Example Website'}", root_url}.
 
 %p Please log in through the link below:
 
-%p= link_to 'Barrio Electrico', root_url
+%p= link_to "#{ENV['WEBSITE_HUMAN_NAME'] || 'Example Website'}", root_url

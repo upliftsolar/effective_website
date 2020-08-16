@@ -15,14 +15,14 @@ module ApplicationHelper
     #update user preferences
 
     if !current_user
-      if @locale == 'es'
+      if is_language?('es')
         nav_link_to 'English', url_for(locale: 'en')
       else
         nav_link_to 'Español', url_for(locale: 'es')
       end
     else # not /root
       fullpath = request.fullpath.dup.tap{|p| p.slice!(/^\/(en|es)/)}
-      if @locale == 'es'
+      if is_language?('es')
         choice = 'en'
         nav_link_to 'English', File.join(user_registration_path(locale: choice, confirm_locale: choice)), method: :patch
       else
@@ -30,6 +30,10 @@ module ApplicationHelper
         nav_link_to 'Español', File.join(user_registration_path(locale: choice, confirm_locale: choice)), method: :patch
       end
     end
+  end
+  def is_language?(str_or_sym)
+    raise "@locale not set yet in request middleware. DEV ERROR" if @locale.nil?
+    str_or_sym && str_or_sym.to_sym == @locale
   end
 
 

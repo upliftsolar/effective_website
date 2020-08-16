@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  around_action :switch_locale
   # http_basic_authenticate_with name: 'example', password: 'staging' if Rails.env.production?
 
   # Meta and titles
@@ -13,11 +14,10 @@ class ApplicationController < ActionController::Base
   before_action :restrict_admin_routes, if: -> { request.path.start_with?('/admin'.freeze) }
 
 
-  around_action :switch_locale
   def switch_locale(&action)
     #TODO: remove current_user locale. Maybe.
     @locale = params[:locale] || current_user.try(:locale) || I18n.default_locale
-    I18n.with_locale(@locale, &action)
+    I18n.with_locale(@locale.to_sym, &action)
   end
   def default_url_options(options={})
     { :locale => I18n.locale == I18n.default_locale ? nil : I18n.locale  }
