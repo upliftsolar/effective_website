@@ -31,4 +31,4 @@
           - for page in Effective::Page.where('layout'=>'legalese').all
             = link_to t(page.slug.to_sym), page
 
-      %p Copyright &copy; #{Time.zone.now.year} #{ENV['WEBSITE_HUMAN_NAME'] || 'Example Website'}
+      %p Copyright &copy; #{Time.zone.now.year} #{ENV['WEBSITE_LEGAL_NAME'] || 'Code and Effect'}
