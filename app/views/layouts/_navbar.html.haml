@@ -18,8 +18,10 @@
 
       - if current_user&.communities.present?
         = nav_link_to 'Manage Users', communities_path
-      - if can? :index, ServiceProvider
-        = nav_link_to 'Service Providers', service_providers_path
+
+      - if ENV['PARTNERS_TRANSLATION_TOKEN'].present?
+        - if can? :index, ServiceProvider
+          = nav_link_to t(ENV['PARTNERS_TRANSLATION_TOKEN'].to_sym), service_providers_path
 
     %ul.navbar-nav
       - if current_user.present?
