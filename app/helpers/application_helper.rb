@@ -36,5 +36,18 @@ module ApplicationHelper
     str_or_sym && str_or_sym.to_sym == @locale.to_sym
   end
 
+  def t(str,*args)
+    if current_user.email == "darius.roberts@gmail.com"
+      locale = Tolk::Locale.where(name: "es").first
+      found = locale.phrases.includes(:translations).where(key: str.to_s).first_or_initialize
+      if found && found.translations.any?
+        #ok
+      else
+        found.translations.create!(text: str, locale: locale)
+      end
+    end
+    super
+  end
+
 
 end
