@@ -1,9 +1,10 @@
 require 'effective_regions_helper'
 EffectiveRegionsHelper.module_eval do
-  old_effective_region = instance_method(:ckeditor_region)
+
+  old_ckeditor_region = instance_method(:ckeditor_region)
 
   define_method(:ckeditor_region) do |args,options={},&block|
-    r = old_effective_region.bind(self).(args,options,&block).dup
+    r = old_ckeditor_region.bind(self).(args,options,&block).dup
     if effectively_editing?
       #ok
     elsif r
