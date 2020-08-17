@@ -5,6 +5,7 @@ class EffectivePagesConstraint
   end
 end
 Rails.application.routes.draw do
+  
   mount Tolk::Engine => '/tolk', :as => 'tolk'
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
 

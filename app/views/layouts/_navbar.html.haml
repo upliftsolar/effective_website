@@ -10,18 +10,18 @@
         = nav_link_to((ENV['WEBSITE_COMMUNITIES_DIRECTORY_HUMAN_NAME']||'Around PR'), list_communities_path)
         
       - if can?(:index, Effective::Post)
-        = nav_link_to 'Blog', effective_posts.posts_path
+        = nav_link_to t("blog_page_title"), effective_posts.posts_path
         
       - if can?(:index, Effective::Page)
         - Effective::Page.all.each do |page|
-          = nav_link_to(page, effective_pages.page_path(page)) if can?(:show, page)
+          = nav_link_to(t(page.slug+"_page_title"), effective_pages.page_path(page)) if can?(:show, page)
 
       - if current_user&.communities.present?
-        = nav_link_to 'Manage Users', communities_path
+        = nav_link_to t('manage_users_page_title'), communities_path
 
       - if ENV['PARTNERS_TRANSLATION_TOKEN'].present?
         - if can? :index, ServiceProvider
-          = nav_link_to t(ENV['PARTNERS_TRANSLATION_TOKEN'].to_sym), service_providers_path
+          = nav_link_to t('service_providers_page_title'), service_providers_path
 
     %ul.navbar-nav
       - if current_user.present?
