@@ -19,7 +19,7 @@
       - if current_user&.communities.present?
         = nav_link_to t('manage_users_page_title'), communities_path
 
-      - if ENV['PARTNERS_TRANSLATION_TOKEN'].present?
+      - if ENV['SHOW_PARTNERS_DIRECTORY'].present?
         - if can? :index, ServiceProvider
           = nav_link_to t('service_providers_page_title'), service_providers_path
 
