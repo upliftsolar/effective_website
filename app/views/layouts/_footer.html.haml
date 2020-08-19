@@ -28,9 +28,9 @@
     .col.text-center
       %p 
         - for page in Effective::Page.where('layout'=>'legalese1').all
-          = link_to t(page.slug.to_sym), page
+          = link_to t(page.slug+"_page_title"), page
       = effective_region :footer_bottom do
         %p 
           - for page in Effective::Page.where('layout'=>'legalese2').all
-            = link_to t(page.slug.to_sym), page
+            = link_to t(page.slug+"_page_title"), page
       %p Copyright &copy; #{Time.zone.now.year} #{ENV['WEBSITE_LEGAL_NAME'] || 'Code and Effect'}

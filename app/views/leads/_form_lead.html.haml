@@ -1,0 +1,5 @@
+= effective_form_with(model: [(namespace if defined?(namespace)), lead]) do |f|
+  = f.text_field :locality
+  = f.file_field :documents
+
+  = effective_submit(f)

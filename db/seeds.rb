@@ -35,21 +35,21 @@ puts '== Creating pages ======================'
 Effective::Page.new(
   title: 'About',
   meta_description: 'About the example website',
-  layout: 'application',
+  layout: 'navbar1',
   template: 'page'
 ).save!
 
 Effective::Page.new(
   title: 'Contact',
   meta_description: 'Contact us at the example website',
-  layout: 'application',
+  layout: 'navbar1',
   template: 'page'
 ).save!
 
 Effective::Page.new(
   title: 'Communities',
   meta_description: 'A example community-only page',
-  layout: 'application',
+  layout: 'navbar3',
   template: 'page',
   roles: [:community]  # Only communities can see this page.
 ).save!

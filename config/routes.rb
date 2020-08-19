@@ -1,13 +1,9 @@
-class EffectivePagesConstraint
-  def self.matches?(request)
-    binding.pry
-    Effective::Page.find(request.path_parameters[:id] || '/').present? rescue false
-  end
-end
+require_relative '../lib/effective_pages_constraint_override'
 Rails.application.routes.draw do
-  
   mount Tolk::Engine => '/tolk', :as => 'tolk'
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
+
+  resources :leads
 
   #without this, i18n doesn't work well for Pages
   #effective pages

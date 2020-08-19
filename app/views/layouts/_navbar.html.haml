@@ -6,22 +6,42 @@
 
   #navContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
+      - if can? :index, Lead
+        = nav_link_to 'Leads', leads_path
+
       - if ENV['WEBSITE_COMMUNITIES_DIRECTORY_HUMAN_NAME'].present?
         = nav_link_to((ENV['WEBSITE_COMMUNITIES_DIRECTORY_HUMAN_NAME']||'Around PR'), list_communities_path)
         
       - if can?(:index, Effective::Post)
         = nav_link_to t("blog_page_title"), effective_posts.posts_path
         
-      - if can?(:index, Effective::Page)
-        - Effective::Page.all.each do |page|
-          = nav_link_to(t(page.slug+"_page_title"), effective_pages.page_path(page)) if can?(:show, page)
+      - Effective::Page.where('layout LIKE ?', 'application').all.each do |page|
+        = nav_link_to(t(page.slug+"_page_title"), effective_pages.page_path(page)) if can?(:show, page)
+      - navbar_pages = Effective::Page.where('layout LIKE ?', "%navbar%").select{|p| can?(:show, p) }.sort_by(&:title).group_by(&:layout)
+      - navbar_pages[ENV['PARTNERS_PAGE_TAB']] ||= []
+      - navbar_pages[ENV['PARTNERS_PAGE_TAB']] << ServiceProvider
+      - navbar_pages[ENV['LEAD_PAGE_TAB']] ||= []
+      - navbar_pages[ENV['LEAD_PAGE_TAB']] << Lead
+      - navbar_pages.sort_by(&:first).each do |(l,pages)|
+        %ul.navbar-nav
+          = nav_dropdown(t(l+"_title")) do
+            - for page in pages
+              - if page.is_a?(Effective::Page)
+                = nav_link_to(t(page.slug+"_page_title"), effective_pages.page_path(page)) 
+              - elsif page <= ServiceProvider
+                = nav_link_to t('service_providers_page_title'), service_providers_path
+              - elsif page <= Lead
+                = nav_link_to t('create_lead_page_title'), new_lead_path
+              - else
+                = nav_link_to(t(page.slug+"_page_title"), effective_pages.page_path(page)) 
+             
+
+
+
 
       - if current_user&.communities.present?
         = nav_link_to t('manage_users_page_title'), communities_path
 
-      - if ENV['SHOW_PARTNERS_DIRECTORY'].present?
-        - if can? :index, ServiceProvider
-          = nav_link_to t('service_providers_page_title'), service_providers_path
 
     %ul.navbar-nav
       - if current_user.present?

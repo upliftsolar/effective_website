@@ -2,6 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :manage, Lead
     can :manage, ServiceProvider
     cannot :access, :admin
 
@@ -58,6 +59,7 @@ class Ability
 
     # Effective Gems
     can [:new, :create, :edit, :update, :destroy], Effective::Page
+    can :manage, Effective::Menu
     can :manage, Effective::CkAsset
     can :manage, Effective::Log
     can :manage, Effective::Post

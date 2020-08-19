@@ -1,4 +1,5 @@
 module ApplicationHelper
+  DYNAMIC_TRANSLATIONS = {}
   def user_tag(user, name: true)
     user ||= User.new
 
@@ -37,13 +38,29 @@ module ApplicationHelper
   end
 
   def t(str,*args)
-    if current_user.email == "darius.roberts@gmail.com"
+    if current_user && current_user.email == "darius.roberts@gmail.com"
       locale = Tolk::Locale.where(name: "es").first
       found = locale.phrases.includes(:translations).where(key: str.to_s).first_or_initialize
       if found && found.translations.any?
         #ok
       else
-        found.translations.create!(text: str, locale: locale)
+        en = Tolk::Locale.where(name: "en").first
+        found.save!
+        found.translations.where(text: str, locale: en).first_or_create!
+        found.translations.where(text: str, locale: locale).first_or_create!
+        #found.translations.create!(text: str, locale: locale)
+      end
+    end
+    if ENV["DYNAMIC_TRANSLATION"] && params[:debugging]
+      locale = Tolk::Locale.where(name: "es").first
+      @memo_phrases ||= begin
+        locale.phrases.includes(:translations)
+      end
+      found = @memo_phrases.where(key: str.to_s).first_or_initialize
+      trs8n = @memo_phrases.where(key: str.to_s).first.translations.for(locale)
+      if trs8n
+        #binding.pry if str.include?("navbar")
+        return trs8n.text.html_safe
       end
     end
     super
