@@ -47,7 +47,7 @@ module ApplicationHelper
         #ok
       else
         en = Tolk::Locale.where(name: "en").first
-        found.save!
+        found.save! rescue Rails.logger.error("Debugging. TOLK.")
         found.translations.where(text: str, locale: en).first_or_create! rescue nil
         found.translations.where(text: str, locale: locale).first_or_create! rescue nil
         #found.translations.create!(text: str, locale: locale)
