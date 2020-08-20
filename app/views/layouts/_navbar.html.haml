@@ -6,9 +6,6 @@
 
   #navContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
-      - if can? :index, Lead
-        = nav_link_to 'Leads', leads_path
-
       - if ENV['WEBSITE_COMMUNITIES_DIRECTORY_HUMAN_NAME'].present?
         = nav_link_to((ENV['WEBSITE_COMMUNITIES_DIRECTORY_HUMAN_NAME']||'Around PR'), list_communities_path)
         
