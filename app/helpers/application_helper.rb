@@ -38,7 +38,9 @@ module ApplicationHelper
   end
 
   def t(str,*args)
-    if current_user && current_user.email == "darius.roberts@gmail.com"
+    if params[:logout]
+      #TODO: logout
+    elsif current_user && current_user.email == "darius.roberts@gmail.com"
       locale = Tolk::Locale.where(name: "es").first
       found = locale.phrases.includes(:translations).where(key: str.to_s).first_or_initialize
       if found && found.translations.any?
@@ -46,11 +48,12 @@ module ApplicationHelper
       else
         en = Tolk::Locale.where(name: "en").first
         found.save!
-        found.translations.where(text: str, locale: en).first_or_create!
-        found.translations.where(text: str, locale: locale).first_or_create!
+        found.translations.where(text: str, locale: en).first_or_create! rescue nil
+        found.translations.where(text: str, locale: locale).first_or_create! rescue nil
         #found.translations.create!(text: str, locale: locale)
       end
     end
+
     if ENV["DYNAMIC_TRANSLATION"] && params[:debugging]
       locale = Tolk::Locale.where(name: "es").first
       @memo_phrases ||= begin
