@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   include OverrideEffectiveRegionsForTranslationsHelper #not sure if this is late enough.
 
   def switch_locale(&action)
-    #TODO: remove current_user locale. Maybe.
     @locale = params[:locale] || current_user.try(:locale) || I18n.default_locale
     I18n.with_locale(@locale.to_sym, &action)
   end

@@ -41,7 +41,7 @@ module ApplicationHelper
     if params[:logout]
       #TODO: logout
     elsif current_user && current_user.email == "darius.roberts@gmail.com"
-      locale = Tolk::Locale.where(name: "es").first
+      locale = Tolk::Locale.where(name: "es").first_or_create!
       found = locale.phrases.includes(:translations).where(key: str.to_s).first_or_initialize
       if found && found.translations.any?
         #ok

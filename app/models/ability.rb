@@ -2,7 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage, Lead
+    can [:index,:increment,:create], Faq
+    can [:new,:create], Lead
     can :manage, ServiceProvider
     cannot :access, :admin
 
@@ -56,6 +57,10 @@ class Ability
 
   def staff_abilities(user)
     can :access, :admin
+    can :admin, Faq
+
+    #TODO: make an admin controller
+    can :manage, Lead
 
     # Effective Gems
     can [:new, :create, :edit, :update, :destroy], Effective::Page
