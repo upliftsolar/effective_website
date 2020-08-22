@@ -21,6 +21,7 @@
       - navbar_pages[ENV['LEAD_PAGE_TAB']] << Lead
       - navbar_pages[ENV['FAQS_PAGE_TAB']] ||= []
       - navbar_pages[ENV['FAQS_PAGE_TAB']] << Faq
+      - navbar_pages.delete(nil) #in case some of ^^ aren't populated.
       - navbar_pages.sort_by(&:first).each do |(l,pages)|
         %ul.navbar-nav
           = nav_dropdown(t(l+"_title")) do
@@ -32,7 +33,7 @@
               - elsif page <= Lead
                 = nav_link_to t('create_lead_page_title'), new_lead_path
               - elsif page <= Faq
-                = nav_link_to t('create_faq_page_title'), faqs_path
+                = nav_link_to t('create_faqs_page_title'), faqs_path
               - else
                 = nav_link_to(t(page.slug+"_page_title"), effective_pages.page_path(page)) 
              

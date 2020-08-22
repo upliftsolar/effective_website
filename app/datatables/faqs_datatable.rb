@@ -1,32 +1,22 @@
 class FaqsDatatable < Effective::Datatable
 
-  bulk_actions do
-    bulk_action 'Delete selected', faq_path(:ids), data: { method: :delete, confirm: 'Really delete selected?' }
-  end
-
-  reorder :position
-
   datatable do
-    order :updated_at
-
-    bulk_actions_col
+    order :position
 
     col :updated_at, visible: false
     col :created_at, visible: false
     col :id, visible: false
+    col :position, visible: false
 
-    col :question do |f|
+    col :question, label: "Search" do |f|
       #TODO: 
-      #"<p><strong>#{f.question}</strong>#{f.answer}</p>".html_safe
+      "<p><strong>#{f.question}</strong>#{f.answer}</p>".html_safe
     end
-    col :answer
-    col :archived, search: { value: false }
-
-    actions_col
+    col :archived, search: { value: false }, visible: false
   end
 
   collection do
-    Faq.deep.all
+    Faq.answered + Faq.unanswered.mine
   end
 
 end

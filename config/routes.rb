@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   mount Tolk::Engine => '/tolk', :as => 'tolk'
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
 
-  resource :faqs, concern: :acts_as_archived
   resources :leads
 
   #without this, i18n doesn't work well for Pages
@@ -80,10 +79,14 @@ Rails.application.routes.draw do
   end
 
   resources :service_providers
-  resources :faqs
 
+  resource :faqs, concern: :acts_as_archived do
+    post :increment, on: :member
+  end
   namespace :admin do
-    resource :faqs, concern: :acts_as_archived
+    resource :faqs, concern: :acts_as_archived do
+      post :increment, on: :member
+    end
     resources :communities, except: [:show], concerns: :acts_as_archived
 
     resources :mates, only: [:new, :create, :destroy] do

@@ -3,6 +3,8 @@ class Ability
 
   def initialize(user)
     can [:index,:increment,:create], Faq
+    can :index, FaqsDatatable
+
     can [:new,:create], Lead
     can :manage, ServiceProvider
     cannot :access, :admin
@@ -58,6 +60,7 @@ class Ability
   def staff_abilities(user)
     can :access, :admin
     can :admin, Faq
+    can :index, Admin::FaqsDatatable
 
     #TODO: make an admin controller
     can :manage, Lead

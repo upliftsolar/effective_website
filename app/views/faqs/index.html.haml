@@ -5,7 +5,7 @@
     %h1= @page_title
 
   .col-4.text-right
-    = render_resource_buttons(resource.klass, (action ||= :index) => false, :list=>false)
+    = render_resource_buttons(resource.klass, (action ||= :index) => false, :increment=>false, :new=>false)
 
 .row
   .col-2
@@ -22,10 +22,21 @@
 - elsif instance_variable_get('@' + resource.name).respond_to?(:to_partial_path)
   = render instance_variable_get('@' + resource.name)
 
-- faq = Faq.new
-= render '/faqs/form_faq', faq: faq, namespace: nil
-
 - elsif Rails.env.development?
   %p effective_resources index view is not sure what to render.
   %p Define an @datatable, @#{resource.try(:plural_name) || 'a plural'}, or @#{resource.try(:name) || 'a singular'}.
   %p or include Effective::CrudController in your controller
+
+
+.row
+  .col-2
+  .col-8
+    = effective_region :new_faq_instruction do
+      This is an editable description.
+
+.row
+  .col-2
+  .col-8
+    - faq = Faq.new
+    = render '/faqs/form_faq', faq: faq, namespace: nil
+

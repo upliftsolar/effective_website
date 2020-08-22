@@ -13,7 +13,9 @@ class Faq < ApplicationRecord
   end
 
   scope :deep, -> { all }
-  scope :answered, -> { all }
+  scope :answered, -> { where("answer is not null") }
+  scope :unanswered, -> { where("answer is null") }
+  scope :mine, Proc.new {|u| where(response_email: ((u && u.response_email)||"nonexistant")) }
 
   validates :question, presence: true
 
