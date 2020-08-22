@@ -1,0 +1,11 @@
+.row
+
+= effective_form_with(model: [(namespace if defined?(namespace)), question]) do |f|
+  = f.text_field :question
+
+  = effective_submit(f)
+  %hint
+    - if current_user
+      = "We will contact you at #{current_user.email} when we have a response."
+    - else
+      = "If you want to be notified of responses, please #{link_to("log in","#")} first.".html_safe

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_21_164209) do
+ActiveRecord::Schema.define(version: 2020_08_22_170608) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -247,6 +247,19 @@ ActiveRecord::Schema.define(version: 2020_08_21_164209) do
     t.integer "price"
     t.boolean "tax_exempt", default: false
     t.string "qb_item_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "locale", default: "en"
+    t.text "question"
+    t.text "answer"
+    t.string "response_email"
+    t.boolean "archived", default: false
+    t.integer "position", default: 100
+    t.integer "activity_counter", default: 0
+    t.boolean "featured", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

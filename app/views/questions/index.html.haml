@@ -10,7 +10,7 @@
 .row
   .col-2
   .col-8
-    = effective_region :faq_instruction do
+    = effective_region :question_instruction do
       This is an editable description.
 
 - if @datatable
@@ -31,12 +31,12 @@
 .row
   .col-2
   .col-8
-    = effective_region :new_faq_instruction do
+    = effective_region :new_question_instruction do
       This is an editable description.
 
 .row
   .col-2
   .col-8
-    - faq = Faq.new
-    = render '/faqs/form_faq', faq: faq, namespace: nil
+    - question = Question.new
+    = render '/questions/form_question', question: question, namespace: nil
 

@@ -24,8 +24,8 @@
       - if can? :admin, :effective_logging
         = nav_link_to 'Logs', effective_logging.admin_logs_path
 
-      - if can? :admin, Faq
-        = nav_link_to 'FAQs', admin_faqs_path
+      - if can? :admin, Question
+        = nav_link_to 'FAQs', admin_questions_path
 
     %ul.navbar-nav
       = nav_dropdown(user_tag(current_user), right: true) do

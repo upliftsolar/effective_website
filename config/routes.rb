@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
 
   resources :leads
+  resource :questions do #, only: [:index,:new,:create] do
+    post :increment, on: :member
+  end
 
   #without this, i18n doesn't work well for Pages
   #effective pages
@@ -35,14 +38,6 @@ Rails.application.routes.draw do
 
 
   
-
-
-
-
-
-
-
-    
   acts_as_archived
 
   devise_for :users, controllers: { 
@@ -80,13 +75,8 @@ Rails.application.routes.draw do
 
   resources :service_providers
 
-  resource :faqs, concern: :acts_as_archived do
-    post :increment, on: :member
-  end
   namespace :admin do
-    resource :faqs, concern: :acts_as_archived do
-      post :increment, on: :member
-    end
+    resources :questions, except: [:show]
     resources :communities, except: [:show], concerns: :acts_as_archived
 
     resources :mates, only: [:new, :create, :destroy] do
@@ -99,6 +89,8 @@ Rails.application.routes.draw do
       post :reinvite, on: :member
       post :impersonate, on: :member
     end
+
+    resources :questions
 
     root to: 'users#index'
   end

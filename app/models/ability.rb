@@ -2,8 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can [:index,:increment,:create], Faq
-    can :index, FaqsDatatable
+    can [:index,:increment,:create], Question
+    #can :index, QuestionsDatatable
 
     can [:new,:create], Lead
     can :manage, ServiceProvider
@@ -59,8 +59,10 @@ class Ability
 
   def staff_abilities(user)
     can :access, :admin
-    can :admin, Faq
-    can :index, Admin::FaqsDatatable
+    can :admin, Question 
+    can(:manage, Question)
+    can(crud, Question)
+    #can :index, Admin::QuestionsDatatable
 
     #TODO: make an admin controller
     can :manage, Lead

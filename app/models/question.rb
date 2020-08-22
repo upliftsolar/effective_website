@@ -1,9 +1,9 @@
-class Faq < ApplicationRecord
+class Question < ApplicationRecord
 
   effective_resource do
     locale           :string
-    question         :string
-    answer           :string
+    question         :text
+    answer           :text
     archived         :boolean
     position         :integer
     activity_counter :integer
@@ -15,7 +15,7 @@ class Faq < ApplicationRecord
   scope :deep, -> { all }
   scope :answered, -> { where("answer is not null") }
   scope :unanswered, -> { where("answer is null") }
-  scope :mine, Proc.new {|u| where(response_email: ((u && u.response_email)||"nonexistant")) }
+  scope :mine, Proc.new {|u| where(response_email: ((u&.email)||"nonexistant")) }
 
   validates :question, presence: true
 
@@ -25,7 +25,7 @@ class Faq < ApplicationRecord
   validates :activity_counter, presence: true
 
   def to_s
-    'faq'
+    'FAQ'
   end
 
   def increment!

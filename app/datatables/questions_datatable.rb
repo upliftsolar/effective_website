@@ -1,4 +1,4 @@
-class FaqsDatatable < Effective::Datatable
+class QuestionsDatatable < Effective::Datatable
 
   datatable do
     order :position
@@ -8,15 +8,16 @@ class FaqsDatatable < Effective::Datatable
     col :id, visible: false
     col :position, visible: false
 
-    col :question, label: "Search" do |f|
+    col :question, label: t("Search") do |f|
       #TODO: 
-      "<p><strong>#{f.question}</strong>#{f.answer}</p>".html_safe
+      "<p><strong>#{f.question}</strong>&nbsp;&nbsp;&nbsp;&nbsp;#{f.answer}</p>".html_safe
     end
     col :archived, search: { value: false }, visible: false
   end
 
   collection do
-    Faq.answered + Faq.unanswered.mine
+    ar = Question.answered.or(Question.unanswered.mine)
+    ar.where(locale: Thread.current[:locale])
   end
 
 end

@@ -1,0 +1,10 @@
+= effective_form_with(model: [:admin,question]) do |f|
+  = f.select :locale, I18n.available_locales
+  = f.text_area :question
+  = f.text_area :answer
+  = f.check_box :featured
+
+  = effective_submit(f)
+  - if question.response_email 
+    %hint
+      = "This will NOT automatically email #{question.response_email}; We should email a response manually (Is this ok?)."

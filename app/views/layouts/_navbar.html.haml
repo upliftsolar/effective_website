@@ -19,8 +19,8 @@
       - navbar_pages[ENV['PARTNERS_PAGE_TAB']] << ServiceProvider
       - navbar_pages[ENV['LEAD_PAGE_TAB']] ||= []
       - navbar_pages[ENV['LEAD_PAGE_TAB']] << Lead
-      - navbar_pages[ENV['FAQS_PAGE_TAB']] ||= []
-      - navbar_pages[ENV['FAQS_PAGE_TAB']] << Faq
+      - navbar_pages[ENV['QUESTIONS_PAGE_TAB']] ||= []
+      - navbar_pages[ENV['QUESTIONS_PAGE_TAB']] << Question
       - navbar_pages.delete(nil) #in case some of ^^ aren't populated.
       - navbar_pages.sort_by(&:first).each do |(l,pages)|
         %ul.navbar-nav
@@ -32,8 +32,8 @@
                 = nav_link_to t('service_providers_page_title'), service_providers_path
               - elsif page <= Lead
                 = nav_link_to t('create_lead_page_title'), new_lead_path
-              - elsif page <= Faq
-                = nav_link_to t('create_faqs_page_title'), faqs_path
+              - elsif page <= Question
+                = nav_link_to t('create_questions_page_title'), questions_path
               - else
                 = nav_link_to(t(page.slug+"_page_title"), effective_pages.page_path(page)) 
              

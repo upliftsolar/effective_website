@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
 
   def switch_locale(&action)
     @locale = params[:locale] || current_user.try(:locale) || I18n.default_locale
+    Thread.current[:locale] = @locale #for datatables.
     I18n.with_locale(@locale.to_sym, &action)
   end
   def default_url_options(options={})

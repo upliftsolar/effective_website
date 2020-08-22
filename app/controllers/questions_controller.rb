@@ -1,7 +1,11 @@
-class Admin::FaqsController < Admin::ApplicationController
+class QuestionsController < ApplicationController
   include Effective::CrudController
   page_title 'FAQs', only: [:index, :show]
 
+  before_save do
+    resource.response_email = current_user&.email
+    resource.locale = @locale.to_s
+  end
 
   #WHY THE HELL IS faqs_path mapping to show? something to do with locale?
   def show
@@ -10,6 +14,5 @@ class Admin::FaqsController < Admin::ApplicationController
     return false
     #redirect_to faqs_path
   end
-
-  submit :increment, "SHOULD NOT BE VISIBLE", except: [:index, :new, :edit, :show]
+  submit :increment, "SHOULD NOT BE VISIBLE", except: [:index, :new, :show, :create]
 end
