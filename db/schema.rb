@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_22_170608) do
+ActiveRecord::Schema.define(version: 2020_08_23_175436) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -217,6 +217,7 @@ ActiveRecord::Schema.define(version: 2020_08_22_170608) do
     t.integer "roles_mask", default: 0
     t.datetime "updated_at"
     t.datetime "created_at"
+    t.integer "position", default: 100
     t.index ["slug"], name: "index_pages_on_slug", unique: true
   end
 

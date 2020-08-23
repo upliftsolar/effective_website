@@ -12,8 +12,10 @@ class Lead < ApplicationRecord
   validates :locality, presence: true
 
   def to_s
-
     'lead'
   end
 
+  def self.position
+    (ENV["NEW_LEAD_POSITION"] || 50).to_i
+  end
 end

@@ -35,4 +35,7 @@ class Question < ApplicationRecord
     #binding.pry 
   end
 
+  def self.position
+    (ENV["QUESTIIONS_POSITION"] || 91).to_i
+  end
 end

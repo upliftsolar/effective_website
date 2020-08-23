@@ -74,3 +74,34 @@ EffectivePages.setup do |config|
   }
 
 end
+EffectivePages.class_eval do
+  permitted_params << :position
+end
+
+=begin
+  old_permitted_params = instance_method(:permitted_params)
+  def permitted_params
+    @@permitted_params ||= old_permitted_params.bind(self).()
+
+    if @@permitted_params.include?(:position)
+      #ok
+    else
+      @@permitted_params += [:position] #see: _additional_fields.html.haml
+    end
+    @@permitted_params
+  end
+end
+require_relative '../../app/controllers/admin/pages_controller_override'
+Admin::PagesController.module_eval do
+  old_update_method = instance_method(:update)
+  def update
+    binding.pry
+    old_update_method.()
+  end
+  def page_params
+    binding.pry
+    params.require(:effective_page).permit(EffectivePages.permitted_params).permit(:position)
+  end
+end
+=end
+

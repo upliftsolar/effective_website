@@ -29,4 +29,8 @@ class ServiceProvider < ApplicationRecord
     name || 'New service provider'
   end
 
+  def self.position
+    (ENV["SERVICE_PROVIDERS_POSITION"] || 92).to_i
+  end
+
 end

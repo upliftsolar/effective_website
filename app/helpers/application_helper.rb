@@ -75,6 +75,28 @@ module ApplicationHelper
     super
   end
 
+  def render_nav_link(page)
+    title,href = if page.is_a?(Effective::Page)
+      [t(page.slug+"_page_title"), effective_pages.page_path(page)]
+    elsif page <= ServiceProvider
+      [t('service_providers_page_title'), service_providers_path]
+    elsif page <= Lead
+      [t('create_lead_page_title'), new_lead_path]
+    elsif page <= Question
+      [t('create_questions_page_title'), questions_path]
+    elsif page <= Effective::Post
+      [t("blog_page_title"), effective_posts.posts_path]
+    else
+      [t(page.slug+"_page_title"), effective_pages.page_path(page)]
+    end
+
+    if params["debugging"]
+      nav_link_to(title + "[#{page.position}]", href)
+    else
+      nav_link_to(title, href)
+    end
+  end
+
 
 end
 

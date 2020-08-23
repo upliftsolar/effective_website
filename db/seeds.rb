@@ -36,6 +36,7 @@ Effective::Page.new(
   title: 'About',
   meta_description: 'About the example website',
   layout: 'navbar1',
+  position: 5, 
   template: 'page'
 ).save!
 
@@ -43,6 +44,7 @@ Effective::Page.new(
   title: 'Contact',
   meta_description: 'Contact us at the example website',
   layout: 'navbar1',
+  position: 95, 
   template: 'page'
 ).save!
 
@@ -50,6 +52,7 @@ Effective::Page.new(
   title: 'Communities',
   meta_description: 'A example community-only page',
   layout: 'navbar3',
+  position: 85, 
   template: 'page',
   roles: [:community]  # Only communities can see this page.
 ).save!

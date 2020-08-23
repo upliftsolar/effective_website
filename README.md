@@ -26,6 +26,20 @@ Login as `admin@codeandeffect.com` with any password.
 - Search the entire project for 'example' and fill in your site specifics.
 - Good luck!
 
+## Page Order in Navbar
+
+Because the "menu" features are not currently active in Effective::Pages, a poor-man's navigation system exists, using a single method in ApplicationHelper. YMMV.
+
+## Translation Features
+
+Different features require different types of Translation functionality.
+
+- Translation within the editable regions (use the <pre>ES:[[...]]</pre> style )
+- Translation of site text and interactive "flash" messages: use /tolk to
+- FAQ (Questions) Snippets are locale-specific.
+
+## Tests
+
 Run tests with
 
 ```ruby
