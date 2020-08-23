@@ -1,5 +1,9 @@
 = effective_form_with(model: [(namespace if defined?(namespace)), lead]) do |f|
-  = f.text_field :locality
-  = f.file_field :documents
-
-  = effective_submit(f)
+  = effective_region :description do
+    = link_to "Edit this.", "?edit=true"
+  = f.text_field :locality, label: "&nbsp;"
+  = f.file_field :documents, label: "&nbsp;"
+  = effective_region :description do
+    = link_to "Edit this.", "?edit=true"
+  = f.submit t("submit")
+  -#effective_submit(f)
