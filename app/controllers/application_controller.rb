@@ -46,12 +46,6 @@ class ApplicationController < ActionController::Base
     assign_test_bot_access_denied_exception(exception) if defined?(EffectiveTestBot) && Rails.env.test?
   end
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  protected
-  def configure_permitted_parameters
-    @confirm_locale = params[:confirm_locale]
-  end
-
   private
 
   def restrict_admin_routes

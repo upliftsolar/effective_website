@@ -25,12 +25,15 @@ module ApplicationHelper
       fullpath = request.fullpath.dup.tap{|p| p.slice!(/^\/(en|es)/)}
       if is_language?('es')
         choice = 'en'
-        nav_link_to 'English', File.join(user_registration_path(locale: choice, confirm_locale: choice)), method: :patch
+        nav_link_to 'English', File.join(user_registration_path(locale: choice, confirm_locale: choice, redirect_to: change_url_for_locale(choice))), method: :patch
       else
         choice = 'es'
-        nav_link_to 'Español', File.join(user_registration_path(locale: choice, confirm_locale: choice)), method: :patch
+        nav_link_to 'Español', File.join(user_registration_path(locale: choice, confirm_locale: choice, redirect_to: change_url_for_locale(choice))), method: :patch
       end
     end
+  end
+  def change_url_for_locale(str)
+   url_for(params.to_h.slice(:controller,:action,:id,:format).merge(locale: str))
   end
   def is_language?(str_or_sym)
     raise "@locale not set yet in request middleware. DEV ERROR" if @locale.nil?
@@ -70,4 +73,10 @@ module ApplicationHelper
   end
 
 
+end
+
+class ActionController::Parameters
+  def to_h
+  @parameters.to_h
+  end
 end

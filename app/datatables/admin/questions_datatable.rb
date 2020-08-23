@@ -2,7 +2,7 @@ class Admin::QuestionsDatatable < Effective::Datatable
 
   bulk_actions do
     #bulk_action 'Delete selected', question_path(:ids), data: { method: :delete, confirm: 'Really delete selected?' }
-    #bulk_action 'Increment selected', question_path(:ids), data: { method: :delete, confirm: 'Really delete selected?' }
+    #bulk_action 'Archive selected', question_path(:ids), data: { method: :delete, confirm: 'Really delete selected?' }
   end
 
 
