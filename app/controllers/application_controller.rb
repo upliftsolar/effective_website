@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
 
   def switch_locale(&action)
     @locale = params[:locale] || current_user.try(:locale) || I18n.default_locale
+
+    @locale = @locale.to_s[0...2] if @locale 
+    # TODO: Effective_pages is generating a link incorrectly. Find "Edit page content" link.
+
     Thread.current[:locale] = @locale #for datatables.
     I18n.with_locale(@locale.to_sym, &action)
   end
