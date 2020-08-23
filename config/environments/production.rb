@@ -89,9 +89,24 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Email
-  config.action_mailer.default_url_options = { host: 'https://www.example.com' }  # No trailing /
-  config.action_mailer.asset_host = 'https://www.example.com' # No trailing /
+  config.action_mailer.default_url_options = { host: ENV["BASE_URL"] }  # No trailing /
+  config.action_mailer.asset_host = ENV["ASSET_HOST"] # No trailing /
 
   # ActiveStorage
   config.active_storage.service = :amazon
+
+  config.action_mailer.delivery_method = :smtp
+  host = ENV["BASE_HOST"] #replace with your own url
+  config.action_mailer.default_url_options = { host: host }
+  
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => ENV["BASE_GMAIL_USER_NAME"],
+    :password             => ENV["BASE_GMAIL_PASSWORD"],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
+
 end
