@@ -20,7 +20,7 @@
         - navbar_pages[ENV['POSTS_PAGE_TAB']] ||= []
         - navbar_pages[ENV['POSTS_PAGE_TAB']] ||= Effective::Post
       - navbar_pages.delete(nil) #in case some of ^^ aren't populated.
-      - navbar_pages.sort_by{|l,ps| ps.map(&:position).min }.each do |(l,pages)|
+      - navbar_pages.sort_by{|l,ps| ps.map(&:position).compact.min }.each do |(l,pages)|
         - if pages.length == 1
           = render_nav_link(pages.first)
         - elsif pages.length > 1
