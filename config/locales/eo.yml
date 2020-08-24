@@ -1,36 +1,46 @@
 ---
-"de":
+"es":
+  "About": >-
+    About
   "about_page_title": >-
     Acerca De
   "blog_page_title": >-
     Noticias
   "board_page_title": >-
-    board_page_title
+    Junta Directiva
   "communities_list_page_title": >-
-    communities_list_page_title
+    Communidad
   "community_page_title": >-
     La Communidad
+  "Contact": >-
+    Contacto
   "contact_page_title": >-
     Contacto
   "coordinators_page_title": >-
-    coordinators_page_title
+    Coordenidores
   "create_lead_page_title": >-
-    Contactanos
+    Anadir
   "create_questions_page_title": >-
-    create_questions_page_title
+    FAQs
   "donate_page_title": >-
-    donate_page_title
+    Donar
+  "Donate_page_title": >-
+    Donantes
   "effective_datatables":
     "actions": >-
-      effective_datatables.actions
+      Accion
     "apply": >-
       effective_datatables.apply
     "boolean_false": >-
-      effective_datatables.boolean_false
+      Falso
+    "boolean_true": >-
+      Verdad
     "reset": >-
       effective_datatables.reset
+  "Invest or Donate": >-
+    Invertir o Donar
   "invest_page_title": >-
-    invest_page_title
+    Inversores
   "navbar1_title": >-
     Titulo1
   "navbar2_title": >-
@@ -39,13 +49,21 @@
     Titulo3
   "navbar4_title": >-
     Titulo4
+  "navbar9_title": >-
+    navbar9_title
+  "Our System": >-
+    Our System
   "partners_page_title": >-
-    partners_page_title
+    Empresas asociadas
+  "privacy-policy_page_title": >-
+    Política de Privacidad
   "Search": >-
-    Search
+    Busqueda
   "service_providers_page_title": >-
     Servicios
+  "sistema_page_title": >-
+    Energia Solar Para Ti
   "sistemas_page_title": >-
     Energia Solar Para Ti
   "submit": >-
-    submit
+    Enviar

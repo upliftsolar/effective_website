@@ -1,5 +1,7 @@
 ---
 "en":
+  "About": >-
+    About
   "about_page_title": >-
     About Us
   "blog_page_title": >-
@@ -10,6 +12,8 @@
     Our Community Partners
   "community_page_title": >-
     Why Community
+  "Contact": >-
+    Contact
   "contact_page_title": >-
     Contact Us
   "coordinators_page_title": >-
@@ -20,17 +24,21 @@
     FAQs
   "donate_page_title": >-
     Donate
+  "Donate_page_title": >-
+    Donate_page_title
   "effective_datatables":
     "actions": >-
-      effective_datatables.actions
+      Actions
     "apply": >-
-      effective_datatables.apply
+      Apply
     "boolean_false": >-
-      effective_datatables.boolean_false
+      False
     "boolean_true": >-
-      effective_datatables.boolean_true
+      True
     "reset": >-
-      effective_datatables.reset
+      Reset
+  "Invest or Donate": >-
+    Invest or Donate
   "invest_page_title": >-
     Invest
   "navbar1_title": >-
@@ -43,6 +51,8 @@
     Invest or Donate
   "navbar9_title": >-
     navbar9_title
+  "Our System": >-
+    Our System
   "partners_page_title": >-
     Partners
   "privacy-policy_page_title": >-
@@ -51,6 +61,8 @@
     Search
   "service_providers_page_title": >-
     Services
+  "sistema_page_title": >-
+    Solar Energy For You
   "sistemas_page_title": >-
     Solar Energy For You
   "submit": >-
