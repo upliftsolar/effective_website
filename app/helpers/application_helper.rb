@@ -74,9 +74,31 @@ module ApplicationHelper
     super
   end
 
+  def render_navbar_from_page_like_objs(env_str_navbar)
+    blk = Proc.new
+    navbar_effective_pages = Effective::Page.where('layout LIKE ?', "%navbar%").or(Effective::Page.where('layout LIKE ?', 'application')).where("draft"=>false)
+    lookup_slug = navbar_effective_pages.select{|p| can?(:show, p) }.inject({}){|acc,p| acc.merge(p.slug =>p) }
+    JSON.parse(env_str_navbar || "{}").each do |k,v| 
+      if v.is_a?(Array)
+        blk.call(k,v.map{|str| find_page_like(str,lookup_slug) })
+      else
+        blk.call(k,[find_page_like(v,lookup_slug)])
+      end
+    end
+  end
+  def find_page_like(str,lookup_slug)
+    lookup_slug[str] || begin
+    str.constantize
+    rescue
+      nil
+    end
+  end
+
   def render_nav_link(page)
     title,href = if page.is_a?(Effective::Page)
       [t(page.slug+"_page_title"), effective_pages.page_path(page)]
+    elsif page == nil
+      ["missing","/missing"]
     elsif page <= ServiceProvider
       [t('service_providers_page_title'), service_providers_path]
     elsif page <= Lead
@@ -90,13 +112,7 @@ module ApplicationHelper
     else
       [t(page.slug+"_page_title"), effective_pages.page_path(page)]
     end
-
-    if params["debugging"]
-      pos = page.position rescue "NULL"
-      nav_link_to(title + "[#{pos}]", href)
-    else
-      nav_link_to(title, href)
-    end
+    nav_link_to(title, href)
   end
 
 

@@ -6,29 +6,14 @@
 
   #navContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
-      - navbar_effective_pages = Effective::Page.where('layout LIKE ?', "%navbar%").or(Effective::Page.where('layout LIKE ?', 'application')).where("draft"=>false)
-      - navbar_pages = Hash.new{|h,k| h[k] = [] }
-      - navbar_pages.merge! navbar_effective_pages.select{|p| can?(:show, p) }.sort_by{|p| p.position rescue Rails.logger.error("for some reason, position is not avail: #{p.title}")}.compact.group_by(&:layout)
-      - navbar_pages[ENV['PARTNERS_PAGE_TAB']] << ServiceProvider
-      - navbar_pages[ENV['LEAD_PAGE_TAB']] << Lead
-      - navbar_pages[ENV['COMMUNITIES_LIST_PAGE_TAB']] << Community
-      - navbar_pages[ENV['QUESTIONS_PAGE_TAB']] << Question
-      - navbar_pages[ENV['POSTS_PAGE_TAB']] << Effective::Post
-      - navbar_pages.delete(nil) #in case some of ^^ aren't populated.
-      - page_groups_ordered_by_lowest_contained_position = navbar_pages.sort_by{|l,ps| ps.map{|p| p.position rescue nil }.compact.min || 99 }
-      - page_groups_ordered_by_lowest_contained_position.each do |(l,pages)|
+      - render_navbar_from_page_like_objs(ENV["NAVBAR"]) do |l,pages|
         - if pages.length == 1
           = render_nav_link(pages.first)
         - elsif pages.length > 1
           %ul.navbar-nav
-            = nav_dropdown(t(l+"_title")) do
+            = nav_dropdown(t(l)) do
               - for page in pages
                 = render_nav_link(page)
-                
-             
-
-
-
 
       - if current_user&.communities.present?
         = nav_link_to t('manage_users_page_title'), communities_path
