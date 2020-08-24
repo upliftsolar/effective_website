@@ -6,21 +6,17 @@
 
   #navContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
-      - navbar_pages = Effective::Page.where('layout LIKE ?', "%navbar%").or(Effective::Page.where('layout LIKE ?', 'application'))
-      - navbar_pages = navbar_pages.select{|p| can?(:show, p) }.sort_by(&:position).group_by(&:layout)
-      - navbar_pages[ENV['PARTNERS_PAGE_TAB']] ||= []
+      - effective_pages = Effective::Page.where('layout LIKE ?', "%navbar%").or(Effective::Page.where('layout LIKE ?', 'application'))
+      - navbar_pages = Hash.new{|h,k| h[k] = [] }
+      - navbar_pages.merge! navbar_pages.select{|p| can?(:show, p) }.sort_by(&:position).group_by(&:layout)
       - navbar_pages[ENV['PARTNERS_PAGE_TAB']] << ServiceProvider
-      - navbar_pages[ENV['LEAD_PAGE_TAB']] ||= []
       - navbar_pages[ENV['LEAD_PAGE_TAB']] << Lead
-      - navbar_pages[ENV['COMMUNITIES_LIST_PAGE_TAB']] ||= []
       - navbar_pages[ENV['COMMUNITIES_LIST_PAGE_TAB']] << Community
-      - navbar_pages[ENV['QUESTIONS_PAGE_TAB']] ||= []
       - navbar_pages[ENV['QUESTIONS_PAGE_TAB']] << Question
-      - if can?(:index, Effective::Post)
-        - navbar_pages[ENV['POSTS_PAGE_TAB']] ||= []
-        - navbar_pages[ENV['POSTS_PAGE_TAB']] ||= Effective::Post
+      - navbar_pages[ENV['POSTS_PAGE_TAB']] << Effective::Post
       - navbar_pages.delete(nil) #in case some of ^^ aren't populated.
-      - navbar_pages.sort_by{|l,ps| ps.map(&:position).compact.min || 99 }.each do |(l,pages)|
+      - page_groups_ordered_by_lowest_contained_position = navbar_pages.sort_by{|l,ps| ps.map{|p| p.position rescue nil }.compact.min || 99 }
+      - page_groups_ordered_by_lowest_contained_position.each do |(l,pages)|
         - if pages.length == 1
           = render_nav_link(pages.first)
         - elsif pages.length > 1
