@@ -61,11 +61,10 @@ module ApplicationHelper
     end
 
     if ENV["DYNAMIC_TRANSLATION"] && params[:debugging]
-      locale = Tolk::Locale.where(name: "es").first
+      locale = Tolk::Locale.where(name: @locale).first
       @memo_phrases ||= begin
         locale.phrases.includes(:translations)
       end
-      found = @memo_phrases.where(key: str.to_s).first_or_initialize
       trs8n = @memo_phrases.where(key: str.to_s).first.translations.for(locale)
       if trs8n
         #binding.pry if str.include?("navbar")
