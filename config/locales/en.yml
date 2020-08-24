@@ -1,29 +1,57 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
-en:
-  hello: "Hello world"
-  manage_users_page_title: "Manage Users"
-  blog_page_title: "News & Progress"
-  about_page_title: "About"
-  contact_page_title: "Contact"
-  service_providers_page_title: "Service Providers"
-
+---
+"en":
+  "about_page_title": >-
+    About Us
+  "blog_page_title": >-
+    News
+  "board_page_title": >-
+    Board and Executives
+  "communities_list_page_title": >-
+    Our Community Partners
+  "community_page_title": >-
+    Why Community
+  "contact_page_title": >-
+    Contact Us
+  "coordinators_page_title": >-
+    Community Coordinators
+  "create_lead_page_title": >-
+    Contact Us
+  "create_questions_page_title": >-
+    FAQs
+  "donate_page_title": >-
+    Donate
+  "effective_datatables":
+    "actions": >-
+      effective_datatables.actions
+    "apply": >-
+      effective_datatables.apply
+    "boolean_false": >-
+      effective_datatables.boolean_false
+    "boolean_true": >-
+      effective_datatables.boolean_true
+    "reset": >-
+      effective_datatables.reset
+  "invest_page_title": >-
+    Invest
+  "navbar1_title": >-
+    About
+  "navbar2_title": >-
+    Contact
+  "navbar3_title": >-
+    Our System
+  "navbar4_title": >-
+    Invest or Donate
+  "navbar9_title": >-
+    navbar9_title
+  "partners_page_title": >-
+    Partners
+  "privacy-policy_page_title": >-
+    Privacy Policy
+  "Search": >-
+    Search
+  "service_providers_page_title": >-
+    Services
+  "sistemas_page_title": >-
+    Solar Energy For You
+  "submit": >-
+    submit
