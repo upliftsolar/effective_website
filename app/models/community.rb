@@ -30,4 +30,7 @@ class Community < ApplicationRecord
   def to_s
     name.presence || 'New Community'
   end
+  def self.position
+    (ENV["COMMUNITIES_POSITION"] || 91).to_i
+  end
 end

@@ -84,6 +84,8 @@ module ApplicationHelper
       [t('create_lead_page_title'), new_lead_path]
     elsif page <= Question
       [t('create_questions_page_title'), questions_path]
+    elsif page <= Community
+      [t('communities_list_page_title'), list_communities_path]
     elsif page <= Effective::Post
       [t("blog_page_title"), effective_posts.posts_path]
     else
