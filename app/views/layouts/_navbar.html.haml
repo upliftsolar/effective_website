@@ -6,7 +6,7 @@
 
   #navContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
-      - effective_pages = Effective::Page.where('layout LIKE ?', "%navbar%").or(Effective::Page.where('layout LIKE ?', 'application'))
+      - effective_pages = Effective::Page.where('layout LIKE ?', "%navbar%").or(Effective::Page.where('layout LIKE ?', 'application')).where("draft"=>false)
       - navbar_pages = Hash.new{|h,k| h[k] = [] }
       - navbar_pages.merge! effective_pages.select{|p| can?(:show, p) }.sort_by(&:position).group_by(&:layout)
       - navbar_pages[ENV['PARTNERS_PAGE_TAB']] << ServiceProvider
