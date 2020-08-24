@@ -93,7 +93,8 @@ module ApplicationHelper
     end
 
     if params["debugging"]
-      nav_link_to(title + "[#{page.position}]", href)
+      pos = page.position rescue "NULL"
+      nav_link_to(title + "[#{pos}]", href)
     else
       nav_link_to(title, href)
     end
