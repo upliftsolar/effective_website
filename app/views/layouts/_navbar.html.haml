@@ -6,9 +6,9 @@
 
   #navContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
-      - effective_pages = Effective::Page.where('layout LIKE ?', "%navbar%").or(Effective::Page.where('layout LIKE ?', 'application')).where("draft"=>false)
+      - navbar_effective_pages = Effective::Page.where('layout LIKE ?', "%navbar%").or(Effective::Page.where('layout LIKE ?', 'application')).where("draft"=>false)
       - navbar_pages = Hash.new{|h,k| h[k] = [] }
-      - navbar_pages.merge! effective_pages.select{|p| can?(:show, p) }.sort_by{|p| p.position rescue Rails.logger.error("for some reason, position is not avail: #{p.title}")}.compact.group_by(&:layout)
+      - navbar_pages.merge! navbar_effective_pages.select{|p| can?(:show, p) }.sort_by{|p| p.position rescue Rails.logger.error("for some reason, position is not avail: #{p.title}")}.compact.group_by(&:layout)
       - navbar_pages[ENV['PARTNERS_PAGE_TAB']] << ServiceProvider
       - navbar_pages[ENV['LEAD_PAGE_TAB']] << Lead
       - navbar_pages[ENV['COMMUNITIES_LIST_PAGE_TAB']] << Community
