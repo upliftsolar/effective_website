@@ -1,0 +1,47 @@
+%h1
+  = simple_effective_region page, :title do
+    = page.title
+
+.row
+  .col-sm-12
+    = effective_region page, :top_title do
+      %p this is top title
+.row
+  .col-sm-6
+    = effective_region page, :top_left do
+      %p this is left content
+
+  .col-sm-6
+    = effective_region page, :top_right do
+      %p this is right content
+
+
+.row
+  .col-sm-12
+    = effective_region page, :middle_title do
+      %p this is middle title
+
+.row
+  .col-sm-6
+    = effective_region page, :left do
+      %p this is left content
+
+  .col-sm-6
+    = effective_region page, :right do
+      %p this is right content
+
+.row
+  .col-sm-6
+    = effective_region page, :bottom_title do
+      %p this is bottom title
+.row
+  .col-sm-6
+    = effective_region page, :bottom_left do
+      %p this is left content
+
+  .col-sm-6
+    = effective_region page, :bottom_right do
+      %p this is right content
+
+= effective_region page, :content do
+  %p this is default content for the page titled #{page.title}
