@@ -1,6 +1,9 @@
 class LeadsController < ApplicationController
   include Effective::CrudController
-  page_title ::I18n.t("lead page"), only: [:new]
+  def new
+    @page_title = ::I18n.t('create_lead_page_title', locale: @locale)
+    super
+  end
 
   def resource_redirect_path(action)
     root_path
