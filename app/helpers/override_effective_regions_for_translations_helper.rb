@@ -10,7 +10,7 @@ EffectiveRegionsHelper.module_eval do
     elsif r
       handle_translation(r)
     end
-    r.html_safe
+    r&.html_safe
   end 
   def handle_translation(r)
     lang_tags = r.scan(/(([A-Z]{2}):\[\[(.*?)\]\])/m)
