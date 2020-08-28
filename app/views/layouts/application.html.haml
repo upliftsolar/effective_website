@@ -8,6 +8,8 @@
     = csrf_meta_tags
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    -if ENV['WEBSITE_STYLESHEET']
+      = stylesheet_link_tag ENV['WEBSITE_STYLESHEET'], media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
     = effective_posts_header_tags
