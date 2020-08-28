@@ -1,7 +1,7 @@
 class LeadsController < ApplicationController
   include Effective::CrudController
   def new
-    @page_title = ::I18n.t('create_lead_page_title', locale: @locale)
+    @page_title = t('create_lead_page_title', locale: @locale)
     super
   end
 
@@ -11,7 +11,7 @@ class LeadsController < ApplicationController
 
   def resource_flash(status, *args)
     if status == :success
-      I18n.t(:success_lead_submission)
+      t(:success_lead_submission)
     else
       super
     end
