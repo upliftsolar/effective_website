@@ -1,0 +1,139 @@
+%h1
+  = simple_effective_region page, :title do
+    = page.title
+
+.row
+  .col-sm-12
+    = effective_region page, :top_title do
+      %p this is top title
+.row
+  .col-sm-6
+    = effective_region page, :top_left do
+      %p this is left content
+
+  .col-sm-6
+    = effective_region page, :top_right do
+      %p this is right content
+
+
+.row
+  .col-sm-12
+    = effective_region page, :middle_title do
+      %p this is middle title
+
+.row
+  .col-sm-6
+    = effective_region page, :left do
+      %p this is left content
+
+  .col-sm-6
+    = effective_region page, :right do
+      %p this is right content
+
+.row
+  .col-sm-6
+    = effective_region page, :bottom_title
+.row
+  .col-sm-6
+    = effective_region page, :bottom_left
+
+  .col-sm-6
+    = effective_region page, :bottom_right
+
+.row
+  .col-sm-6
+    = effective_region page, :bottom_title_2
+.row
+  .col-sm-6
+    = effective_region page, :bottom_left_2
+
+  .col-sm-6
+    = effective_region page, :bottom_right_2
+
+.row
+  .col-sm-6
+    = effective_region page, :bottom_title_3
+.row
+  .col-sm-6
+    = effective_region page, :bottom_left_3
+
+  .col-sm-6
+    = effective_region page, :bottom_right_3
+
+.row
+  .col-sm-6
+    = effective_region page, :bottom_title_4
+.row
+  .col-sm-6
+    = effective_region page, :bottom_left_4
+
+  .col-sm-6
+    = effective_region page, :bottom_right_4
+
+
+.row
+  .col-sm-6
+    = effective_region page, :bottom_title_5
+.row
+  .col-sm-6
+    = effective_region page, :bottom_left_5
+
+  .col-sm-6
+    = effective_region page, :bottom_right_5
+
+
+.row
+  .col-sm-6
+    = effective_region page, :bottom_title_6
+.row
+  .col-sm-6
+    = effective_region page, :bottom_left_6
+
+  .col-sm-6
+    = effective_region page, :bottom_right_6
+
+.row
+  .col-sm-6
+    = effective_region page, :bottom_title_7
+.row
+  .col-sm-6
+    = effective_region page, :bottom_left_7
+
+  .col-sm-6
+    = effective_region page, :bottom_right_7
+
+
+.row
+  .col-sm-6
+    = effective_region page, :bottom_title_8
+.row
+  .col-sm-6
+    = effective_region page, :bottom_left_8
+
+  .col-sm-6
+    = effective_region page, :bottom_right_8
+
+
+.row
+  .col-sm-6
+    = effective_region page, :bottom_title_9
+.row
+  .col-sm-6
+    = effective_region page, :bottom_left_9
+
+  .col-sm-6
+    = effective_region page, :bottom_right_9
+
+
+.row
+  .col-sm-6
+    = effective_region page, :bottom_title_10
+.row
+  .col-sm-6
+    = effective_region page, :bottom_left_10
+  .col-sm-6
+    = effective_region page, :bottom_right_10
+
+
+= effective_region page, :content do
+  %p this is default content for the page titled #{page.title}
