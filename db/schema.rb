@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_23_175436) do
+ActiveRecord::Schema.define(version: 2020_08_28_153015) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -117,6 +117,10 @@ ActiveRecord::Schema.define(version: 2020_08_23_175436) do
     t.integer "created_by_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "full_name"
+    t.string "contact_info"
+    t.string "purpose"
+    t.text "body"
     t.index ["created_by_id"], name: "index_leads_on_created_by_id"
   end
 
