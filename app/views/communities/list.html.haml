@@ -1,13 +1,6 @@
 - resource = (@_effective_resource || Effective::Resource.new(controller_path))
 
 .row
-  .col-8
-    %h1= @page_title
-
-  .col-4.text-right
-    = render_resource_buttons(resource.klass, (action ||= :index) => false, :list=>false)
-
-.row
   .col-12
     = effective_region :list_instruction do
       This is an editable description.
