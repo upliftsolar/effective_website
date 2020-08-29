@@ -18,6 +18,7 @@ gem 'haml'
 gem 'jquery-rails'
 gem 'sass-rails', '~> 5'
 gem 'turbolinks'
+gem 'font-awesome-rails'
 
 gem 'effective_addresses'
 gem 'effective_bootstrap'

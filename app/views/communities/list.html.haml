@@ -22,6 +22,4 @@
     = render instance_variable_get('@' + resource.name)
 
 - elsif Rails.env.development?
-  %p effective_resources index view is not sure what to render.
-  %p Define an @datatable, @#{resource.try(:plural_name) || 'a plural'}, or @#{resource.try(:name) || 'a singular'}.
-  %p or include Effective::CrudController in your controller
+  %p This list is disabled, for now. Try /?debugging=true
