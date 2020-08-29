@@ -1,6 +1,6 @@
 @import "font-awesome";
 
-*{ font-family: "HaasGrotDisp" !important; }
+*{ font-family: "Apercu" !important; }
 body{
     background-color: rgb(107, 203, 255) !important;
 }
@@ -11,9 +11,17 @@ p {
 
 @font-face {
     font-family:'HaasGrotDisp';
-    src: url(asset-path('HaasGrotDisp-45Light.eot'));
-    src: url(asset-path('HaasGrotDisp-45Light.eot?#iefix')) format("embedded-opentype"),
-         url(asset-path('HaasGrotDisp-45Light.ttf')) format("truetype"),
-         url(asset-path('HaasGrotDisp-45Light.woff')) format("woff"),
-         url(asset-path('HaasGrotDisp-45Light.svg#icofonts')) format("svg");
+    src: url(asset-path('HaasGrotDisp-35Thin.eot'));
+    src: url(asset-path('HaasGrotDisp-35Thin.eot?#iefix')) format("embedded-opentype"),
+         url(asset-path('HaasGrotDisp-35Thin.ttf')) format("truetype"),
+         url(asset-path('HaasGrotDisp-35Thin.woff')) format("woff"),
+         url(asset-path('HaasGrotDisp-35Thin.svg#icofonts')) format("svg");
+}
+@font-face {
+    font-family:'Apercu';
+    src: url(asset-path('ApercuPro-Regular.eot'));
+    src: url(asset-path('ApercuPro-Regular.eot?#iefix')) format("embedded-opentype"),
+         url(asset-path('ApercuPro-Regular.ttf')) format("truetype"),
+         url(asset-path('ApercuPro-Regular.woff')) format("woff"),
+         url(asset-path('ApercuPro-Regular.svg#icofonts')) format("svg");
 }
