@@ -10,8 +10,9 @@ class CommunitiesController < ApplicationController
   before_action(only: :index) do
     communities_length = resource_scope.to_a.length
 
+
     if communities_length == 0
-      flash[:danger] = 'Your website account does not belong to any community groups. Please contact the webmaster for assistance.'
+      flash[:danger] = t(:you_belong_to_no_communities_notice) #'Your website account does not belong to any community groups. Please contact the webmaster for assistance.'
       redirect_to root_path
     end
 
@@ -25,5 +26,6 @@ class CommunitiesController < ApplicationController
     @datatable = CommunitiesDatatable.new
     #render :index
   end
+
 
 end

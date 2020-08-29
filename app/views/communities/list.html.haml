@@ -12,14 +12,14 @@
   .col-8
     = effective_region :list_instruction do
       This is an editable description.
-
-- for community in @communities
-  - if community.lat && community.lng
-    :javascript
-      if(window.map != undefined){
-        var community_loc = {"lat": #{community.lat}, "lng":#{community.lng}};
-        var marker = new google.maps.Marker({ position: community_loc,  map: map }); 
-      }
+  %script
+    function loadMarkersOnMap(){
+    //this function might be called by maps init function
+    var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+    - for community in @communities.select(&:lat)
+      var marker#{community.id} = new google.maps.Marker({ position: {"lat": #{community.lat}, "lng":#{community.lng}},  map: map, image: image, title: '#{community.name + " (#{community.users.length})"}' }); 
+      marker#{community.id}.addListener("click", function(){ map.setZoom(11); map.setCenter(marker#{community.id}.getPosition()); });
+    }
 
 - if @datatable
   = render_datatable(@datatable)
