@@ -13,12 +13,18 @@
     = effective_region :list_instruction do
       This is an editable description.
 
+- for community in @communities
+  - if community.lat && community.lng
+    :javascript
+      if(window.map != undefined){
+        var community_loc = {"lat": #{community.lat}, "lng":#{community.lng}};
+        var marker = new google.maps.Marker({ position: community_loc,  map: map }); 
+      }
+
 - if @datatable
   = render_datatable(@datatable)
-
 - elsif instance_variable_get('@' + resource.plural_name).respond_to?(:to_partial_path)
   = render instance_variable_get('@' + resource.plural_name)
-
 - elsif instance_variable_get('@' + resource.name).respond_to?(:to_partial_path)
   = render instance_variable_get('@' + resource.name)
 

@@ -13,15 +13,21 @@
       %h3 Admin Only
       %p
         %small.text-muted Only admin can see or update these fields.
+      = f.text_field :lng, label: "Locality"
+      %p
+        %small.text-muted These set the pointer on the map.
+      = f.number_field :lat, label: "Latitude", step: :any
+      = f.number_field :lng, label: "Longitude", step: :any
 
   %hr
 
-  .row
-    .col-sm-6
-      %h3 Billing Address
-      = effective_address_fields(f, :billing)
-    .col-sm-6
-      %h3 Shipping Address
-      = effective_address_fields(f, :shipping)
+  -if false
+    .row
+      .col-sm-6
+        %h3 Billing Address
+        = effective_address_fields(f, :billing)
+      .col-sm-6
+        %h3 Shipping Address
+        = effective_address_fields(f, :shipping)
 
   = effective_submit(f)

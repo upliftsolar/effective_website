@@ -21,6 +21,7 @@ class CommunitiesController < ApplicationController
   end
 
   def list
+    @communities = Community.where('archived'=>false).all
     @datatable = CommunitiesDatatable.new
     #render :index
   end

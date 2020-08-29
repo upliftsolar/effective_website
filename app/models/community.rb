@@ -12,6 +12,9 @@ class Community < ApplicationRecord
     name            :string
     phone           :string
     email           :string
+    lat :float
+    lng :float
+    locality :string
 
     archived        :boolean, permitted: false
 
