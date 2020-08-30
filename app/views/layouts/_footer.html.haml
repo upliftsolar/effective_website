@@ -30,4 +30,5 @@
         %p 
           - for page in Effective::Page.where('layout'=>'legalese1',"draft"=>false).all
             = link_to t(page.slug+"_page_title"), effective_pages.page_path(page)
-      %p Copyright &copy; #{Time.zone.now.year} #{ENV['WEBSITE_LEGAL_NAME'] || 'Code and Effect'}
+      = effective_region :copyright_text do
+        %p Copyright &copy; #{Time.zone.now.year} #{ENV['WEBSITE_LEGAL_NAME'] || 'Code and Effect'}

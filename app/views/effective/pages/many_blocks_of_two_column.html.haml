@@ -1,9 +1,7 @@
-%h1
-  = simple_effective_region page, :title do
-    = page.title
-
 .row
   .col-sm-12
+    = effective_region page, :title do
+      %h1= page.title
     = effective_region page, :top_title do
       %p this is top title
 .row
