@@ -1,0 +1,19 @@
+- resource = (@_effective_resource || Effective::Resource.new(controller_path))
+- @resource = instance_variable_get('@' + resource.name) if resource.name
+
+- if @resource
+  .row
+    .col-8
+      = effective_region :title do
+        %h1= @page_title
+    .col-4.text-right
+      = render_resource_buttons(@resource)
+  .row
+    .col-4
+      = effective_region :image_left do
+        %p Image Here
+    .col-8
+      = effective_region :text_right do
+        %p Text Here
+
+  = render_resource_form(@resource)
