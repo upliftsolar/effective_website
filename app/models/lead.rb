@@ -15,10 +15,13 @@ class Lead < ApplicationRecord
 
   scope :deep, -> { all }
 
-  validates :locality, presence: true
+  validates :full_name, presence: true
+  validates :contact_info, presence: true
+  validates :purpose, presence: true
+  validates :body, presence: true
 
   def to_s
-    'lead'
+    'contact'
   end
 
   def self.position

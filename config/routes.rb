@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   end
 
   resources :service_providers
+  match '/contact', to: 'leads#new', via: [:get]
 
   namespace :admin do
     resources :questions, except: [:show]
