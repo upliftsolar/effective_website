@@ -4,10 +4,14 @@
     About
   "about_page_title": >-
     About Us
+  "_blog_category_blog_page_title": >-
+    Blog
+  "_blog_category_events_page_title": >-
+    Events
+  "_blog_category_news_page_title": >-
+    News
   "blog_page_title": >-
     News
-  "faq_page_title": >-
-    FAQs
   "board_page_title": >-
     Board and Executives
   "communities_list_page_title": >-
@@ -37,8 +41,12 @@
       False
     "boolean_true": >-
       True
+    "new": >-
+      effective_datatables.new
     "reset": >-
       Reset
+  "faq_page_title": >-
+    FAQs
   "Invest or Donate": >-
     Invest or Donate
   "invest_page_title": >-
@@ -53,6 +61,8 @@
     Invest or Donate
   "navbar9_title": >-
     navbar9_title
+  "News": >-
+    News
   "Our System": >-
     Our System
   "partners_page_title": >-
