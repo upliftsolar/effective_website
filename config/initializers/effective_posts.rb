@@ -3,7 +3,7 @@ EffectivePosts.setup do |config|
 
   # Every post must belong to one or more category.
   # Don't use the category :posts
-  config.categories = [:news, :events]
+  config.categories = [:news,:blog,:events]
 
   # Create top level routes for each category
   # Should each of the above categories have a top level route created for it
