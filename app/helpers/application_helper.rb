@@ -87,6 +87,7 @@ module ApplicationHelper
     end
   end
   def find_page_like(str,lookup_slug)
+    return str if str.starts_with?("/") 
     lookup_slug[str] || begin
     str.constantize
     rescue
@@ -99,6 +100,9 @@ module ApplicationHelper
       [t(page.slug+"_page_title"), effective_pages.page_path(page)]
     elsif page == nil
       ["missing","/missing"]
+    elsif page.is_a?(String) && page.starts_with?("/")
+      token = page.dup.tap{|p| p.chomp!("/"); p.gsub!(/\W/,"_")}
+      [t("#{token}_page_title"), page]
     elsif page <= ServiceProvider
       [t('service_providers_page_title'), service_providers_path]
     elsif page <= Lead

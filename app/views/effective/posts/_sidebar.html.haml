@@ -1,0 +1,29 @@
+=effective_region :posts_sidebar do
+  - posts = recent_posts(category: nil, limit: 5)
+
+  - if EffectivePosts.categories.present?
+    - categories = EffectivePosts.categories
+    %h4.dashboard-title Categories
+    %ul.list-unstyled
+      %li= link_to 'All Posts', effective_posts.posts_path
+
+      - categories.sort.each do |category|
+        %li= link_to category.to_s.titleize, effective_post_category_path(category)
+
+  - posts = recent_posts(category: nil, limit: 5)
+  %h4.dashboard-title Recent
+  %ul.list-unstyled
+    - posts.each do |post|
+      %li= link_to post, effective_post_path(post)
+
+    - if posts.length == 0
+      %li= link_to 'None', effective_posts.posts_path, class: 'disabled'
+
+  - if EffectivePosts.authorized?(self, :admin, :effective_posts)
+    %h4.dashboard-title Admin
+    %ul.list-unstyled
+      %li= link_to 'All Posts', effective_posts.admin_posts_path
+
+      - if @post.present?
+        %li= link_to 'Edit Post Content', effective_regions.edit_path(effective_posts.post_path(@post, exit: effective_posts.post_path(@post)))
+        %li= link_to 'Edit Post Settings', effective_posts.edit_admin_post_path(@post)

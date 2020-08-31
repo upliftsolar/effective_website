@@ -1,0 +1,9 @@
+.effective-post
+  %h2.post-title= link_to post, effective_post_path(post)
+
+  %p.post-meta.text-muted
+    = post_meta(post, category: false)
+    = admin_post_status_badge(post)
+
+  .post-content.post-excerpt
+    = post_excerpt(post)
