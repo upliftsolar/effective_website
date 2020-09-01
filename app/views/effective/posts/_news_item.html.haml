@@ -1,0 +1,19 @@
+:css
+  p{
+      margin-block-end: 0 !important;
+      margin-bottom: 0 !important;
+  }
+  hr{ margin-top: 0.25rem; 
+      margin-bottom: 0.25rem 
+  };
+  h2.post-title{ margin-bottom: 0.25rem };
+.effective-post
+  %h2.post-title= link_to news_item, effective_post_path(news_item)
+  -#%h2.post-title= link_to news_item, news_item.description.strip
+
+  %p.post-meta.text-muted
+    = post_meta(news_item)
+    = admin_post_status_badge(news_item)
+
+  .post-content.post-excerpt
+    = news_item.excerpt.html_safe
