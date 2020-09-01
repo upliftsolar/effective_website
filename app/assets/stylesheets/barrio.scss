@@ -25,3 +25,7 @@ p {
          url(asset-path('ApercuPro-Regular.woff')) format("woff"),
          url(asset-path('ApercuPro-Regular.svg#icofonts')) format("svg");
 }
+
+.effective-post h2.post-title * {
+  font-size: large;
+}
