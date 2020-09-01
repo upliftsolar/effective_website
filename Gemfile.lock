@@ -7,6 +7,15 @@ GIT
       safe_yaml (>= 0.8.6)
       sass
 
+GIT
+  remote: https://github.com/upliftsolar/effective_addresses.git
+  revision: 837ac89348347613e81feb5fdbeb9f4d89ebb1fc
+  specs:
+    effective_addresses (1.9.2)
+      carmen
+      coffee-rails
+      rails (>= 3.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -132,10 +141,6 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
-    effective_addresses (1.9.2)
-      carmen
-      coffee-rails
-      rails (>= 3.2.0)
     effective_bootstrap (0.7.3)
       bootstrap (>= 4.0.0)
       coffee-rails
@@ -407,7 +412,7 @@ DEPENDENCIES
   devise
   devise_invitable
   dotenv-rails
-  effective_addresses
+  effective_addresses!
   effective_bootstrap
   effective_ckeditor
   effective_datatables

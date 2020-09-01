@@ -20,7 +20,7 @@ gem 'sass-rails', '~> 5'
 gem 'turbolinks'
 gem 'font-awesome-rails'
 
-gem 'effective_addresses'
+gem 'effective_addresses', github: "upliftsolar/effective_addresses"
 gem 'effective_bootstrap'
 gem 'effective_ckeditor'
 gem 'effective_datatables'
