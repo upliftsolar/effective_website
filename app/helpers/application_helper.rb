@@ -102,7 +102,11 @@ module ApplicationHelper
       ["missing","/missing"]
     elsif page.is_a?(String) && page.starts_with?("/")
       token = page.dup.tap{|p| p.chomp!("/"); p.gsub!(/\W/,"_")}
-      [t("#{token}_page_title"), page]
+      if @locale == "en"
+        [t("#{token}_page_title"), "/en"+page]
+      else
+        [t("#{token}_page_title"), "/es"+page]
+      end
     elsif page <= ServiceProvider
       [t('service_providers_page_title'), service_providers_path]
     elsif page <= Lead
