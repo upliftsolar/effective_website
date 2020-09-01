@@ -1,4 +1,4 @@
-=effective_region :posts_sidebar do
+=effective_region "posts_sidebar_#{params[:category]}" do
   - posts = recent_posts(category: nil, limit: 5)
 
   - if EffectivePosts.categories.present?

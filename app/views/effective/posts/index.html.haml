@@ -1,9 +1,17 @@
 = effective_region(params[:category].to_s) do 
   %h1= @page_title
 
-= render 'layout' do
-  .effective-posts
-    = render partial: @posts, spacer_template: 'spacer'
+- if params[:category].to_s == "news"
+  = render 'layout' do
+    .effective-posts
+      = render partial: "news_item", collection: @posts, spacer_template: 'spacer'
 
-  %nav.d-flex.justify-content-center
-    = bootstrap_paginate(@posts, per_page: EffectivePosts.per_page)
+    %nav.d-flex.justify-content-center
+      = bootstrap_paginate(@posts, per_page: EffectivePosts.per_page)
+- else
+  = render 'layout' do
+    .effective-posts
+      = render partial: @posts, spacer_template: 'spacer'
+
+    %nav.d-flex.justify-content-center
+      = bootstrap_paginate(@posts, per_page: EffectivePosts.per_page)
