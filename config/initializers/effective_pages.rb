@@ -18,13 +18,13 @@ EffectivePages.setup do |config|
   config.excluded_layouts = [:admin]
 
   # The site_title will be used to populate the og:site_name tag
-  config.site_title = "#{Rails.application.class.name.split('::').first.titleize}"
+  config.site_title = "#{ENV['WEBSITE_HUMAN_NAME'] || Rails.application.class.name.split('::').first.titleize}"
 
   # The site_title_suffix will be appended to the effective_pages_header_tags title tag
-  config.site_title_suffix = " | #{Rails.application.class.name.split('::').first.titleize}"
+  config.site_title_suffix = " | #{ENV['WEBSITE_HUMAN_NAME'] || Rails.application.class.name.split('::').first.titleize}"
 
   # This site_og_image is the filename for an image placed in /assets/images and will be used to populate the og:image tag
-  config.site_og_image = ''
+  config.site_og_image = ENV['LOGO'] || ''
 
   # When using the effective_pages_header_tags() helper in <head> to set the <meta name='description'>
   # The value will be populated from an Effective::Page's .meta_description field,
