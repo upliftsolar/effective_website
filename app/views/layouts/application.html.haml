@@ -9,6 +9,9 @@
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"
+    = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"
+
     -if ENV['WEBSITE_STYLESHEET']
       = stylesheet_link_tag ENV['WEBSITE_STYLESHEET'], media: 'all', 'data-turbolinks-track': 'reload'
 
@@ -25,6 +28,29 @@
     = render partial: 'layouts/impersonate'
     = render partial: 'layouts/staging'
     = render partial: 'layouts/navbar'
+    - content = { header: t('Cookies_used_on_the_website'), message: t('This_website_uses_cookies_to_improve_your_experience.'), dismiss: t('got_it'), allow: t('allow_cookies'), deny: t('decline'), link: t('learn_more'), href: t('cookies_and_you_website_url'), policy: t('Cookie Policy')}
+    %script
+      window.dcontent = #{raw content.to_json};
+    :javascript
+      window.addEventListener("load", function(){
+      window.cookieconsent.initialise({
+          container: document.getElementById("cookieconsent"),
+          palette:{
+          popup: {background: "#1aa3ff"},
+          button: {background: "#e0e0e0"},
+          },
+          revokable: true,
+          onStatusChange: function(status) {
+          console.log(this.hasConsented() ?
+            'enable cookies' : 'disable cookies');
+          },
+          "position": "bottom-left",
+          "theme": "classic",
+          "domain": "https://localhost:3000/*",
+          "secure": true,
+          "content": window.dcontent
+        });
+        });
 
     #content-wrap
       .container
