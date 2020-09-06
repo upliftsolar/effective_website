@@ -11,6 +11,7 @@ module ApplicationHelper
 
     [(avatar_tag if avatar_tag.present?), (name_tag if avatar_tag.blank? || name)].compact.join(' ').html_safe
   end
+
   def switch_language_option
     #TODO:
     #update user preferences
@@ -33,34 +34,41 @@ module ApplicationHelper
     end
   end
   def change_url_for_locale(str)
-   url_for(params.to_h.slice(:controller,:action,:id,:format).merge(locale: str))
+    url_for(params.to_h.slice(:controller,:action,:id,:format).merge(locale: str))
   end
+
   def is_language?(str_or_sym)
     raise "@locale not set yet in request middleware. DEV ERROR" if @locale.nil?
+    if [:es,:eo].include?(str_or_sym.to_sym) && [:es,:eo].include?(@locale.to_sym)
+      return true #we start out in EO because TOLK is dumb, and it's impossible to change the default translation.
+      #... therefore we keep 2 versions of the default translation file... doubled to eo.yml
+    elsif [:en,:zz].include?(str_or_sym.to_sym) && [:en,:zz].include?(@locale.to_sym)
+      return true
+    end
     str_or_sym && str_or_sym.to_sym == @locale.to_sym
   end
 
   def t(str,*args)
     if params[:logout]
       #TODO: logout
-    elsif current_user && current_user.email == "darius.roberts@gmail.com"
+    elsif params[:translate] || current_user && current_user.email == "darius.roberts@gmail.com"
       locale = Tolk::Locale.where(name: "es").first_or_create!
       found = locale.phrases.includes(:translations).where(key: str.to_s).first_or_initialize
-      if found && found.translations.any?
-        #ok
-      else
+      
         found.save! rescue Rails.logger.error("Debugging. TOLK.")
         found.translations.where(text: str, locale: locale).first_or_create! rescue nil
+
+        es = Tolk::Locale.where(name: "es").first_or_create!
+        found.translations.where(text: str, locale: es).first_or_create! rescue nil
 
         eo = Tolk::Locale.where(name: "eo").first_or_create!
         found.translations.where(text: str, locale: eo).first_or_create! rescue nil
 
         en = Tolk::Locale.where(name: "en").first_or_create!
         found.translations.where(text: str, locale: en).first_or_create! rescue nil
-      end
     end
 
-    if ENV["DYNAMIC_TRANSLATION"] && params[:debugging]
+    if params[:debugging]
       locale = Tolk::Locale.where(name: @locale).first
       @memo_phrases ||= begin
         locale.phrases.includes(:translations)
