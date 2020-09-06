@@ -4,6 +4,8 @@
     About
   "about_page_title": >-
     About Us
+  "allow_cookies": >-
+    Allow cookies
   "_blog_category_blog_page_title": >-
     Blog
   "_blog_category_events_page_title": >-
@@ -22,16 +24,24 @@
     Contact
   "contact_page_title": >-
     Contact Us
+  "Cookie Policy": >-
+    Cookie Policy
+  "cookies_and_you_website_url": >-
+    https://cookiesandyou.com
+  "Cookies_used_on_the_website": >-
+    Cookies are used on the website
   "coordinators_page_title": >-
     Community Coordinators
   "create_lead_page_title": >-
     Contact Us
   "create_questions_page_title": >-
     FAQs
+  "decline": >-
+    decline
   "donate_page_title": >-
     Donate
   "Donate_page_title": >-
-    Donate_page_title
+    Donate
   "effective_datatables":
     "actions": >-
       Actions
@@ -42,15 +52,19 @@
     "boolean_true": >-
       True
     "new": >-
-      effective_datatables.new
+      New
     "reset": >-
       Reset
   "faq_page_title": >-
     FAQs
+  "got_it": >-
+    Got it!
   "Invest or Donate": >-
     Invest or Donate
   "invest_page_title": >-
     Invest
+  "learn_more": >-
+    Learn more.
   "navbar1_title": >-
     About
   "navbar2_title": >-
@@ -78,4 +92,6 @@
   "sistemas_page_title": >-
     Solar Energy For You
   "submit": >-
-    submit
+    Submit
+  "This_website_uses_cookies_to_improve_your_experience": >-
+    This. website uses cookies to improve your experience.

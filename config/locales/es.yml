@@ -4,6 +4,8 @@
     About
   "about_page_title": >-
     Acerca De
+  "allow_cookies": >-
+    allow_cookies
   "_blog_category_blog_page_title": >-
     Blog
   "_blog_category_events_page_title": >-
@@ -22,12 +24,20 @@
     Contacto
   "contact_page_title": >-
     Contacto
+  "Cookie Policy": >-
+    Cookie Policy
+  "cookies_and_you_website_url": >-
+    cookies_and_you_website_url
+  "Cookies_used_on_the_website": >-
+    Cookies_used_on_the_website
   "coordinators_page_title": >-
     Coordenidores
   "create_lead_page_title": >-
     Anadir
   "create_questions_page_title": >-
     FAQs
+  "decline": >-
+    decline
   "donate_page_title": >-
     Donar
   "Donate_page_title": >-
@@ -47,10 +57,14 @@
       effective_datatables.reset
   "faq_page_title": >-
     faq_page_title
+  "got_it": >-
+    got_it
   "Invest or Donate": >-
     Invertir o Donar
   "invest_page_title": >-
     Inversores
+  "learn_more": >-
+    learn_more
   "navbar1_title": >-
     Titulo1
   "navbar2_title": >-
@@ -79,3 +93,5 @@
     Energia Solar Para Ti
   "submit": >-
     Enviar
+  "This_website_uses_cookies_to_improve_your_experience": >-
+    This_website_uses_cookies_to_improve_your_experience.
