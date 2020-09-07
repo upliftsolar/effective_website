@@ -13,12 +13,17 @@ class ApplicationController < ActionController::Base
   skip_authorization_check if: :devise_controller?
   before_action :restrict_admin_routes, if: -> { request.path.start_with?('/admin'.freeze) }
   include OverrideEffectiveRegionsForTranslationsHelper #not sure if this is late enough.
+  include ApplicationHelper
 
+  def normalize_locale!
+    @locale = @locale.to_s[0...2]
+    @locale = "es" if is_language?("es")
+    @locale = "en" if is_language?("en")
+    nil
+  end
   def switch_locale(&action)
     @locale = params[:locale] || current_user.try(:locale) || I18n.default_locale
-
-    @locale = @locale.to_s[0...2] if @locale 
-    # TODO: Effective_pages is generating a link incorrectly. Find "Edit page content" link.
+    normalize_locale!
 
     Thread.current[:locale] = @locale #for datatables.
     I18n.with_locale(@locale.to_sym, &action)
