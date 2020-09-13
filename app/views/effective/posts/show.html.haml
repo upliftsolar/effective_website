@@ -1,0 +1,13 @@
+= render 'layout' do
+  .effective-post
+    %h1.post-title= link_to @post, effective_post_path(@post)
+
+    %p.post-meta.text-muted
+      = post_meta(@post, author: false)
+      = admin_post_status_badge(@post)
+
+    = render 'effective/posts/event', post: @post
+
+    .post-body.post-content
+      = effective_region @post, :body do
+        %p Default content

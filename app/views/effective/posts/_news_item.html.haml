@@ -12,7 +12,7 @@
   %h2.post-title= link_to news_item, news_item.description.strip
 
   %p.post-meta.text-muted
-    = post_meta(news_item, author: false)
+    = post_meta(news_item, author: false,category: false)
     = admin_post_status_badge(news_item)
 
   .post-content.post-excerpt

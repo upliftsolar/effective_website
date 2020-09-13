@@ -1,7 +1,7 @@
 = effective_region(params[:category].to_s) do 
   %h1= @page_title
 
-- if params[:category].to_s == "news"
+- if ["news","papers"].include? params[:category].to_s
   = render 'layout' do
     .effective-posts
       = render partial: "news_item", collection: @posts, spacer_template: 'spacer'
