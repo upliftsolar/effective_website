@@ -73,7 +73,7 @@ module ApplicationHelper
       @memo_phrases ||= begin
         locale.phrases.includes(:translations)
       end
-      trs8n = @memo_phrases.where(key: str.to_s).first.translations.for(locale)
+      trs8n = @memo_phrases.where(key: str.to_s).first.translations.for(locale) rescue nil
       if trs8n
         #binding.pry if str.include?("navbar")
         return trs8n.text.html_safe
