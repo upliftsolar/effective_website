@@ -1,6 +1,5 @@
-Rails.application.config.assets.paths << Rails.root.join("app", "assets", "stylesheets","fonts","HaasGrotDisp-35Thin")
-Rails.application.config.assets.paths << Rails.root.join("app", "assets", "stylesheets","fonts","HaasGrotDisp-45Light")
-Rails.application.config.assets.paths << Rails.root.join("app", "assets", "stylesheets","fonts","HaasGrotDisp-65Medium")
-Rails.application.config.assets.paths << Rails.root.join("app", "assets", "stylesheets","fonts","Apercu")
+for dir in Dir.glob("app/assets/stylesheets/fonts/*")
+  Rails.application.config.assets.paths << Rails.root.join(dir)
+end
 Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
 Rails.application.config.assets.precompile += %w( barrio.css uplift.css )

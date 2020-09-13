@@ -26,6 +26,15 @@ p {
          url(asset-path('ApercuPro-Regular.svg#icofonts')) format("svg");
 }
 
+@font-face {
+    font-family:'KohinoorTelugu';
+    src: url(asset-path('KohinoorTelugu.eot'));
+    src: url(asset-path('KohinoorTelugu.eot?#iefix')) format("embedded-opentype"),
+         url(asset-path('KohinoorTelugu.ttf')) format("truetype"),
+         url(asset-path('KohinoorTelugu.woff')) format("woff"),
+         url(asset-path('KohinoorTelugu.svg')) format("svg");
+}
+
 .effective-post h2.post-title * {
   font-size: 20pt;
 }

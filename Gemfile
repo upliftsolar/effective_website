@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'sass-rails', '~> 5'
 gem 'turbolinks'
 gem 'font-awesome-rails'
+gem "image_processing"
 
 gem 'effective_addresses', github: "upliftsolar/effective_addresses"
 gem 'effective_bootstrap'
