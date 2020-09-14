@@ -65,4 +65,23 @@
 
     #footer-wrap
       = render partial: 'layouts/footer'
-
+    %script
+      window.locale = #{raw @locale&.inspect || 'null'};
+    :javascript
+      $(function(){
+        $('a').each(function(i,el){
+          if(el.href.match(/^((?!(en|es)).)*$/)){
+            //need to add local to random links ... unless external link?
+            var new_href = el.href;
+            if(el.href.match(/\?/g)){
+              new_href = new_href + "&locale=" + locale;
+            } else {
+              new_href = new_href + "?locale=" + locale;
+            }
+            el.href = new_href;
+            //console.log("el %o", el);
+          } else {
+            //OK
+          }
+        });
+      });
