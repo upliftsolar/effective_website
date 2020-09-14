@@ -30,7 +30,7 @@ gem 'effective_logging'
 gem 'effective_orders'
 gem 'effective_regions'
 gem 'effective_pages'
-gem 'effective_posts'
+gem 'effective_posts', github: "upliftsolar/effective_posts", branch: "add_spanish_translations"
 gem 'effective_resources'
 gem 'effective_roles'
 gem 'effective_style_guide'

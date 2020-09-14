@@ -16,6 +16,21 @@ GIT
       coffee-rails
       rails (>= 3.2.0)
 
+GIT
+  remote: https://github.com/upliftsolar/effective_posts.git
+  revision: 90ffbf11101590db2178c910ae5f3e6333d93e24
+  branch: add_spanish_translations
+  specs:
+    effective_posts (1.1.11)
+      effective_bootstrap
+      effective_ckeditor
+      effective_datatables (>= 4.0.0)
+      effective_regions
+      effective_resources
+      nokogiri
+      rails (>= 3.2.0)
+      sass
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -180,15 +195,6 @@ GEM
       effective_resources
       effective_roles
       rails (>= 3.2.0)
-    effective_posts (1.1.10)
-      effective_bootstrap
-      effective_ckeditor
-      effective_datatables (>= 4.0.0)
-      effective_regions
-      effective_resources
-      nokogiri
-      rails (>= 3.2.0)
-      sass
     effective_regions (1.8.6)
       effective_ckeditor
       rails (>= 3.2.0)
@@ -426,7 +432,7 @@ DEPENDENCIES
   effective_logging
   effective_orders
   effective_pages
-  effective_posts
+  effective_posts!
   effective_regions
   effective_resources
   effective_roles
