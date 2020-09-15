@@ -10,8 +10,9 @@
 .effective-post
   -#%h2.post-title= link_to news_item, effective_post_path(news_item)
   %h2.post-title
+    - token = news_item.slug+"-title-"+rand(10_000).to_s
     = link_to news_item.description.strip do
-      = effective_region(news_item.title+rand(10_000).to_s) do
+      = effective_region(token) do
         = news_item.title
 
   %p.post-meta.text-muted

@@ -1,5 +1,12 @@
 ---
 "es":
+  lead:
+    add_me_to_newsletter: "Quiero recibir noticias."
+    i_have_a_question: "Tengo otra pregunta, distinto de los FAQs"
+    join_a_community: "Quiero encontrarme con un socio, y participar"
+    start_a_community: "Quiero empezar un socio"
+    becoming_a_coordinater: "Quiero participar como un Coordinator"
+    other: "Otra pregunta"
   "About": >-
     Acerca De
   "about_page_title": >-

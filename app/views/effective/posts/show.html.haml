@@ -2,11 +2,11 @@
   .effective-post
     %h1.post-title
       = link_to effective_post_path(@post) do
-        = effective_region(@post.title+rand(10_000).to_s) do
+        = effective_region(@post.slug+"-title-"+rand(10_000).to_s) do
           = @post.title 
 
     %p.post-meta.text-muted
-      = post_meta(@post, author: false)
+      = post_meta(@post, author: false, category: false)
       = admin_post_status_badge(@post)
 
     = render 'effective/posts/event', post: @post

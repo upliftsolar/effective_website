@@ -1,10 +1,11 @@
 class Lead < ApplicationRecord
   PURPOSE_OPTIONS = {
-    "Add me to your newsletter" => "newsletter",
-    "I have a question not answered on the FAQs page" => "faq",
-    "I would like to join a community and become a customer"=>"lead",
-    "I would like to start a Community Partner organization or association"=>"start",
-    "I’m interested in becoming a Community Coordinator"=>"coordinator","Other"=>"other"
+    add_me_to_newsletter: "newsletter",
+    i_have_a_question: "faq",
+    join_a_community: "lead",
+    start_a_community: "start",
+    becoming_a_coordinater: "coordinator",
+    other: "other"
   }
   has_many_attached :documents
 
