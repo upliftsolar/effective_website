@@ -1,11 +1,11 @@
 ---
 "es":
   "About": >-
-    About
-  "about_page_title": >-
     Acerca De
+  "about_page_title": >-
+    Sobre Nosotros
   "allow_cookies": >-
-    allow_cookies
+    Deja Usar Cookies
   "_blog_category_blog_page_title": >-
     Blog
   "_blog_category_events_page_title": >-
@@ -15,11 +15,11 @@
   "blog_page_title": >-
     Noticias
   "board_page_title": >-
-    Junta Directiva
+    Directores y Oficiales
   "communities_list_page_title": >-
-    Communidad
+    Socios de Comunidades
   "community_page_title": >-
-    La Communidad
+    La Comunidad
   "Contact": >-
     Contacto
   "contact_page_title": >-
@@ -27,13 +27,13 @@
   "Cookie Policy": >-
     Cookie Policy
   "cookies_and_you_website_url": >-
-    cookies_and_you_website_url
+    https://blogthinkbig.com/que-son-las-cookies
   "Cookies_used_on_the_website": >-
-    Cookies_used_on_the_website
+    Cookies son usado por este sitio.
   "coordinators_page_title": >-
     Coordenidores
   "create_lead_page_title": >-
-    Anadir
+    Contáctanos
   "create_questions_page_title": >-
     FAQs
   "decline": >-
@@ -46,19 +46,19 @@
     "actions": >-
       Accion
     "apply": >-
-      effective_datatables.apply
+      Apply
     "boolean_false": >-
       Falso
     "boolean_true": >-
       Verdad
     "new": >-
-      effective_datatables.new
+      Nuevo
     "reset": >-
-      effective_datatables.reset
+      Reiniciar
   "faq_page_title": >-
-    faq_page_title
+    FAQs
   "got_it": >-
-    got_it
+    OK
   "Invest or Donate": >-
     Invertir o Donar
   "invest_page_title": >-
@@ -76,17 +76,19 @@
   "navbar9_title": >-
     navbar9_title
   "News": >-
-    News
+    Noticias
   "Our System": >-
-    Our System
+    Nuestra Sistema
   "partners_page_title": >-
-    Empresas asociadas
+    Socios
   "privacy-policy_page_title": >-
     Política de Privacidad
   "Search": >-
     Busqueda
   "service_providers_page_title": >-
     Servicios
+  "Sign In": >-
+    Login
   "sistema_page_title": >-
     Energia Solar Para Ti
   "sistemas_page_title": >-
