@@ -23,7 +23,7 @@ gem "image_processing"
 
 gem 'effective_addresses', github: "upliftsolar/effective_addresses"
 gem 'effective_bootstrap'
-gem 'effective_ckeditor'
+gem 'effective_ckeditor', '1.10.1'
 gem 'effective_datatables'
 gem 'effective_developer'
 gem 'effective_logging'
