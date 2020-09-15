@@ -49,6 +49,7 @@ module ApplicationHelper
   end
 
   def t(str,*args)
+    str = str.present? ? str.to_s : "Unknown"
     if params[:logout]
       #TODO: logout
     elsif params[:translate] || current_user && current_user.email == "darius.roberts@gmail.com"
@@ -76,7 +77,7 @@ module ApplicationHelper
       trs8n = @memo_phrases.where(key: str.to_s).first.translations.for(locale) rescue nil
       if trs8n
         #binding.pry if str.include?("navbar")
-        return trs8n.text.html_safe
+        return trs8n.text.to_s.html_safe
       end
     end
     super
