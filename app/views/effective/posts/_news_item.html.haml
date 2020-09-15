@@ -9,11 +9,15 @@
   h2.post-title{ margin-bottom: 0.25rem };
 .effective-post
   -#%h2.post-title= link_to news_item, effective_post_path(news_item)
-  %h2.post-title= link_to news_item, news_item.description.strip
+  %h2.post-title
+    = link_to news_item.description.strip do
+      = effective_region(news_item.title+rand(10_000).to_s) do
+        = news_item.title
 
   %p.post-meta.text-muted
     = post_meta(news_item, author: false,category: false)
     = admin_post_status_badge(news_item)
 
   .post-content.post-excerpt
-    = news_item.excerpt.html_safe
+    = effective_region(news_item.slug + rand(10_000).to_s) do
+      = news_item.excerpt.html_safe

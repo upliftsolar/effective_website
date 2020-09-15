@@ -1,9 +1,13 @@
 .effective-post
-  %h2.post-title= link_to post, effective_post_path(post)
+  %h2.post-title
+    = link_to effective_post_path(post) do
+      = effective_region(post.title+rand(10_000).to_s) do
+        = post.title 
 
   %p.post-meta.text-muted
     = post_meta(post, category: false)
     = admin_post_status_badge(post)
 
   .post-content.post-excerpt
-    = post_excerpt(post)
+    = effective_region(post.slug + rand(10000).to_s) do
+      = post_excerpt(post)

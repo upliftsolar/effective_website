@@ -1,6 +1,9 @@
 = render 'layout' do
   .effective-post
-    %h1.post-title= link_to @post, effective_post_path(@post)
+    %h1.post-title
+      = link_to effective_post_path(@post) do
+        = effective_region(@post.title+rand(10_000).to_s) do
+          = @post.title 
 
     %p.post-meta.text-muted
       = post_meta(@post, author: false)
