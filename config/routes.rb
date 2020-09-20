@@ -103,4 +103,8 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
   match '/es', to: 'static_pages#home', locale: 'es', via: [:get]
   match '/en', to: 'static_pages#home', locale: 'en', via: [:get]
+
+  get '/sitemaps/:locale(/:filename)', to: 'static_pages#sitemaps'
+  get '/createsitemaps', to: 'static_pages#createsitemaps'
+  get '/robots.txt', to: 'static_pages#robots'
 end

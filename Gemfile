@@ -36,6 +36,8 @@ gem 'effective_resources'
 gem 'effective_roles'
 gem 'effective_style_guide'
 
+gem 'sitemap_generator'
+
 group :development, :test do
   gem 'dotenv-rails'
   gem 'listen'

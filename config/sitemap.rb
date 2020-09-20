@@ -1,0 +1,2 @@
+#moved to URL /createsitemaps
+

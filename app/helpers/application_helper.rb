@@ -83,15 +83,14 @@ module ApplicationHelper
     super
   end
 
-  def render_navbar_from_page_like_objs(env_str_navbar)
-    blk = Proc.new
+  def render_navbar_from_page_like_objs(env_str_navbar,&block)
     navbar_effective_pages = Effective::Page.where('layout LIKE ?', "%navbar%").or(Effective::Page.where('layout LIKE ?', 'application')).where("draft"=>false)
     lookup_slug = navbar_effective_pages.select{|p| can?(:show, p) }.inject({}){|acc,p| acc.merge(p.slug =>p) }
     JSON.parse(env_str_navbar || "{}").each do |k,v| 
       if v.is_a?(Array)
-        blk.call(k,v.map{|str| find_page_like(str,lookup_slug) })
+        block.call(k,v.map{|str| find_page_like(str,lookup_slug) })
       else
-        blk.call(k,[find_page_like(v,lookup_slug)])
+        block.call(k,[find_page_like(v,lookup_slug)])
       end
     end
   end
@@ -129,6 +128,7 @@ module ApplicationHelper
     else
       [t(page.slug+"_page_title"), effective_pages.page_path(page)]
     end
+    yield(href) if block_given?
     nav_link_to(title, href)
   end
 
