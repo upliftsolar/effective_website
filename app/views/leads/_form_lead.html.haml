@@ -6,7 +6,7 @@
   = effective_region :contact_info_description
   = f.text_field :contact_info, label: "&nbsp;"
   = effective_region :purpose_description
-  = f.select :purpose, (::Lead::PURPOSE_OPTIONS.map{|k,v|[t("lead/#{k}"),v]}), label: "&nbsp;"
+  = f.select :purpose, (::Lead::PURPOSE_OPTIONS.map{|k,v|[t("lead.#{k}"),v]}), label: "&nbsp;"
   = effective_region :body_description
   = f.text_area :body, label: "&nbsp;"
   -#f.text_field :locality, label: "&nbsp;"
