@@ -1,5 +1,12 @@
 ---
 "zz":
+  lead:
+    add_me_to_newsletter: "Add me to your newsletter"
+    i_have_a_question: "I have a question not answered on the FAQs page"
+    join_a_community: "I would like to join a community and become a customer"
+    start_a_community: "I would like to start a Community Partner organization or association"
+    becoming_a_coordinater: "I’m interested in becoming a Community Coordinator"
+    other: "Other"
   "About": >-
     About
   "about_page_title": >-
