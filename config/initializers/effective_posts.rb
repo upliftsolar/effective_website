@@ -60,6 +60,7 @@ EffectivePosts.setup do |config|
     admin: 'admin'
   }
 
+
   # Add additional permitted params
   # config.permitted_params += [:additional_field]
 
@@ -96,16 +97,22 @@ EffectivePosts.setup do |config|
   # subject_for_post_submitted_to_admin: Proc.new { |post| "Post needs approval"}
 
   config.mailer = {
-    subject_prefix: '[example]',
+    subject_prefix: "[#{ENV["SHORTCODE"] || "EW"}]",
     subject_for_post_submitted_to_admin: '',
 
     layout: 'effective_posts_mailer_layout',
 
-    default_from: 'info@example.com',
-    admin_email: 'admin@example.com',
+    default_from: (ENV['WEBSITE_EMAIL'] || 'info@example.com'),
+    admin_email: (ENV['WEBSITE_POSTMASTER_EMAIL'] || 'admin@example.com'),
 
     deliver_method: nil,   # :deliver (rails < 4.2), :deliver_now (rails >= 4.2) or :deliver_later
     delayed_job_deliver: false
   }
 
 end
+
+EffectivePosts.class_eval do
+  permitted_params << :website_href
+  #permitted_params << :attachments
+end
+#require_relative '../../app/controllers/admin/posts_controller_override.rb'
