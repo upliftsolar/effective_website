@@ -91,7 +91,7 @@ class ApplicationController < ActionController::Base
       when 'devise/sessions' # Sign In
         "Sign in to your account."
       else # Home Page, and any other page that's missed
-        "This is a very effective website. Whatever that means."
+        "Community-Powered Distributed Solar"
       end
     )
   end
