@@ -34,7 +34,15 @@ module ApplicationHelper
     end
   end
   def change_url_for_locale(str)
-    url_for(params.to_h.slice(:controller,:action,:id,:format).merge(locale: str))
+    #{"controller"=>"effective/posts", "action"=>"index", "category"=>"events", :locale=>"en"}
+    #url_for(params.to_h.slice("controller","action","id","format","category").merge(locale: str))
+    #=> "/en/blog/category/news" . ... ????
+    r = if request.fullpath[/\Wen\W|\Wen$|\Wes\W|\Wes$/]
+      request.fullpath
+    else
+      File.join("/#{str}",request.fullpath)#+"?locale=#{str}"
+    end
+    r
   end
 
   def is_language?(str_or_sym)
