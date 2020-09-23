@@ -11,9 +11,7 @@
   -#%h2.post-title= link_to news_item, effective_post_path(news_item)
   %h2.post-title
     - token = news_item.slug+"-title-"+rand(10_000).to_s
-    - href = news_item.website_href.present? ? news_item.website_href : news_item.description
-    -#TODO: take this out. Soon. 
-    = link_to href.strip do
+    = link_to news_item.website_href.to_s.strip do
       = effective_region(token) do
         = news_item.title
 
