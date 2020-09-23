@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/upliftsolar/effective_posts.git
-  revision: f1b28174ed6c9d9f3e23c377c3a368a5db63c34b
+  revision: 5dbd6bc40bee16f515e46d3b1eb77b8eab5fecb8
   branch: add_spanish_translations
   specs:
     effective_posts (1.1.11)

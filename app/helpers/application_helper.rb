@@ -37,11 +37,10 @@ module ApplicationHelper
     #{"controller"=>"effective/posts", "action"=>"index", "category"=>"events", :locale=>"en"}
     #url_for(params.to_h.slice("controller","action","id","format","category").merge(locale: str))
     #=> "/en/blog/category/news" . ... ????
-    r = if request.fullpath[/\Wen\W|\Wen$|\Wes\W|\Wes$/]
-      request.fullpath
-    else
-      File.join("/#{str}",request.fullpath)#+"?locale=#{str}"
-    end
+    path = request.path
+    path.gsub!(/^\/en\//,"")
+    path.gsub!(/^\/es\//,"")
+    r = File.join("/#{str}",path)#+"?locale=#{str}"
     r
   end
 
