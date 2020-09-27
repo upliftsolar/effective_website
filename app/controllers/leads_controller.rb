@@ -1,6 +1,6 @@
 class LeadsController < ApplicationController
   include Effective::CrudController
-  after_action :send_activity_email
+  after_action :send_activity_email, only: :create
   def new
     @page_title = t('create_lead_page_title', locale: @locale)
     super
