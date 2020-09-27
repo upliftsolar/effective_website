@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= "Lead" %></h1>
+    <p>
+      New activity. Lead submitted. (<%= Lead.count %>) total leads now. (Not sure how many un-resolved.)
+    </p>
+    <p>
+      JORGE. If there are too many... we can aggregate this notification to 2 time per day.
+    </p>
+    <p>
+      To login to the site, just follow this link: <%= ENV["BASE_URL"] %>.
+    </p>
+  </body>
+</html>
