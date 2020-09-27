@@ -22,7 +22,7 @@ class Lead < ApplicationRecord
 
   validates :full_name, presence: true
   validates :contact_info, presence: true
-  validates :purpose, presence: true
+  #validates :purpose, presence: true
   validates :body, presence: true
 
   def to_s

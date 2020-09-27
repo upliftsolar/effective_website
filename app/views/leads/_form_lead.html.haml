@@ -5,8 +5,9 @@
   = f.text_field :full_name, label: "&nbsp;"
   = effective_region :contact_info_description
   = f.text_field :contact_info, label: "&nbsp;"
-  = effective_region :purpose_description
-  = f.select :purpose, (::Lead::PURPOSE_OPTIONS.map{|k,v|[t("lead.#{k}"),v]}), label: "&nbsp;"
+  - if ENV['NEW_LEAD_INCLUDE_PURPOSE']
+    = effective_region :purpose_description
+    = f.select :purpose, (::Lead::PURPOSE_OPTIONS.map{|k,v|[t("lead.#{k}"),v]}), label: "&nbsp;", include_blank: false
   = effective_region :body_description
   = f.text_area :body, label: "&nbsp;"
   -#f.text_field :locality, label: "&nbsp;"
