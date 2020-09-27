@@ -11,7 +11,7 @@ class LeadsController < ApplicationController
   end
 
   def send_activity_email
-    LeadMailer.send_activity_email.deliver_later 
+    LeadMailer.new_activity_email.deliver_later 
     #TODO: weekly https://guides.rubyonrails.org/action_mailer_basics.html
   end
 

@@ -13,6 +13,16 @@
     = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"
     - if ENV['GOOGLE_PLATFORM_JS_URL']
       = javascript_include_tag ENV['GOOGLE_PLATFORM_JS_URL'], async: true
+      =# javascript_include_tag 'google_analytics', async: true
+      %script
+        window.tracking_id = #{raw (ENV["GOOGLE_PLATFORM_TRACKING_ID"] || "UA-000001-01").inspect};
+      :javascript
+        window.dataLayer = (window.dataLayer || []);
+        window.gtag = function(){ dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        document.addEventListener("turbolinks:load", function(event){
+          window.gtag('config', window.tracking_id, {"page_location": event.data.url});
+        });
 
 
     -if ENV['WEBSITE_STYLESHEET']
