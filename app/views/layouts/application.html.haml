@@ -11,6 +11,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"
     = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"
+    - if ENV['GOOGLE_PLATFORM_JS_URL']
+      = javascript_include_tag ENV['GOOGLE_PLATFORM_JS_URL'], async: true
+
 
     -if ENV['WEBSITE_STYLESHEET']
       = stylesheet_link_tag ENV['WEBSITE_STYLESHEET'], media: 'all', 'data-turbolinks-track': 'reload'
