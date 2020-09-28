@@ -18,12 +18,11 @@ module ApplicationHelper
 
     if !current_user
       if is_language?('es')
-        nav_link_to 'English', url_for(locale: 'en')
+        nav_link_to 'English', change_url_for_locale("en")
       else
-        nav_link_to 'Español', url_for(locale: 'es')
+        nav_link_to 'Español', change_url_for_locale("es")
       end
     else # not /root
-      fullpath = request.fullpath.dup.tap{|p| p.slice!(/^\/(en|es)/)}
       if is_language?('es')
         choice = 'en'
         nav_link_to 'English', File.join(user_registration_path(locale: choice, confirm_locale: choice, redirect_to: change_url_for_locale(choice))), method: :patch
