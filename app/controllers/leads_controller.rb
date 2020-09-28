@@ -1,6 +1,7 @@
 class LeadsController < ApplicationController
   include Effective::CrudController
   after_action :send_activity_email, only: :create
+  before_action :authorize_admin, except: [:create,:new]
   def new
     @page_title = t('create_lead_page_title', locale: @locale)
     super
@@ -8,6 +9,10 @@ class LeadsController < ApplicationController
 
   def resource_redirect_path(action)
     root_path
+  end
+
+  def authorize_admin
+    authorize!(:manage,Lead)
   end
 
   def send_activity_email
