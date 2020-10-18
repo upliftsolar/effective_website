@@ -32,4 +32,7 @@ class Lead < ApplicationRecord
   def self.position
     (ENV["NEW_LEAD_POSITION"] || 50).to_i
   end
+  def purpose_text
+    PURPOSE_OPTIONS[purpose] || purpose
+  end
 end

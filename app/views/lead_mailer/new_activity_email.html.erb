@@ -12,7 +12,18 @@
       JORGE. If there are too many... we can aggregate this notification to 2 time per day.
     </p>
     <p>
-      To login to the site, just follow this link: <%= ENV["BASE_URL"] %>.
+      Follow this link: <%= link_to "leads", "#{ENV["BASE_URL"]}/#{'leads'}" %>.
+      Note: you may need to login first.
     </p>
+    <h3>Last 10 Leads:</h3>
+    <% for l in Lead.limit(10) %>
+    <p>
+      <%= l.full_name %>
+      <%= l.contact_info %>
+      <%= l.purpose_text %>
+      <%= l.body %> 
+      <%= link_to  "direct link", l %>
+    </p>
+    <% end %>
   </body>
 </html>

@@ -13,6 +13,11 @@ class LeadsDatatable < Effective::Datatable
     col :created_at, visible: false
     col :id, visible: false
 
+    col :full_name
+    col :purpose
+    col :body do |l|
+      l.body.to_s[0...50]
+    end
     col :locality
 
     actions_col

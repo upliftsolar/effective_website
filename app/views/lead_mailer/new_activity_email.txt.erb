@@ -1,1 +1,12 @@
 New activity. Lead submitted. (<%= Lead.count %>) total leads now. (Not sure how many un-resolved.)
+
+Here is the last 10:
+<% for l in Lead.limit(10) %>
+    <p>
+      <%= l.full_name %>
+      <%= l.contact_info %>
+      <%= l.purpose %>
+      <%= l.body %> 
+      <%= link_to  "direct link", l %>
+    </p>
+<% end %>
