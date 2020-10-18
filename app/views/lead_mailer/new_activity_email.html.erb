@@ -20,10 +20,14 @@
     <p>
       <%= l.full_name %>
       <%= l.contact_info %>
+      <br/>
       <%= l.purpose_text %>
+      <br/>
       <%= l.body %> 
-      <%= link_to("direct link", url_for(l)) rescue "Access through link above." %>
+      <br/>
+        <%= link_to("direct link", url_for(l)) rescue "Access through link above." %>
     </p>
+    <hr>
     <% end %>
   </body>
 </html>
