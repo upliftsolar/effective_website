@@ -22,7 +22,7 @@
       <%= l.contact_info %>
       <%= l.purpose_text %>
       <%= l.body %> 
-      <%= link_to  "direct link", l %>
+      <%= link_to("direct link", url_for(l)) rescue "Access through link above." %>
     </p>
     <% end %>
   </body>
